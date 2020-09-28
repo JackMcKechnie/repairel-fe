@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '@components/navbar';
+import Menu from '@components/menu'
 
 export default function Home() {
   return (
@@ -9,26 +10,11 @@ export default function Home() {
         <title>REPAIREL</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
+    <Menu></Menu>
       <main>
         <header>
           <Navbar />
         </header>
-        <h1>
-          <Link href='/'>
-            <a>Shop</a>
-          </Link>
-        </h1>
-        <h1 className='title'>
-          <Link href='/about'>
-            <a>About</a>
-          </Link>
-        </h1>
-        <h1 className='title'>
-          <Link href='/faq'>
-            <a>FAQs</a>
-          </Link>
-        </h1>
         <h1 className='title'>
           <Link href='/checkout'>
             <a>Checkout</a>

@@ -1,21 +1,32 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Wrapper } from './Menu.style';
+import Logo from "../../public/repairel-logo.svg";
+
+import { Wrapper, MenuList, MenuListItem, MenuLogo } from "./Menu.style";
+import Socials from '@components/socials'
 
 const Menu = () => {
   const handleLinkClick = () => {
     // close menu
   };
 
-  const menu = ['about', 'shop', 'faq'];
+  const menu = ["shop", "about", "faq"];
   const menuItems = menu.map((item, index) => {
     return (
-      <Link key={index} onClick={handleLinkClick()} href={`/${item}`}>
-        <a>{item}</a>
-      </Link>
+      <MenuListItem key={index}>
+        <Link key={index} onClick={handleLinkClick()} href={`/${item}`}>
+          <a>{item}</a>
+        </Link>
+      </MenuListItem>
     );
   });
 
-  return <Wrapper>{menuItems}</Wrapper>;
+  return (
+    <Wrapper>
+      <MenuLogo src={Logo}></MenuLogo>
+      <MenuList>{menuItems}</MenuList>
+      <Socials></Socials>
+    </Wrapper>
+  );
 };
 export default Menu;
