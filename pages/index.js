@@ -3,14 +3,15 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className='container'>
+    <div>
       <Head>
         <title>REPAIREL</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main>
-        <h1 className='title'>
+        <h1>REPAIREL</h1>
+        <h1>
           <Link href='/'>
             <a>Shop</a>
           </Link>
@@ -22,7 +23,7 @@ export default function Home() {
         </h1>
         <h1 className='title'>
           <Link href='/faq'>
-            <a>FAQ's</a>
+            <a>FAQs</a>
           </Link>
         </h1>
         <h1 className='title'>
@@ -42,7 +43,7 @@ export default function Home() {
         </h1>
       </main>
 
-      <style jsx global>{`
+      {/* <style jsx global>{`
         html,
         body {
           padding: 0;
@@ -55,7 +56,7 @@ export default function Home() {
         * {
           box-sizing: border-box;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 }
