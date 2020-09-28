@@ -13,8 +13,10 @@
     "codecov": "^3.7.2",
     "cypress": "^5.2.0",
     "next": "9.5.3",
+    "next-react-svg": "^1.1.2",
     "react": "16.13.1",
     "react-dom": "^16.13.1",
+    "react-hamburger-menu": "^1.2.1",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
