@@ -13,7 +13,6 @@ const OptionsItem = styled.li`
     font-size: 1.4rem;
     flex-basis: 50%;
     text-align: center;
-
 `
 
 export { OptionsList, OptionsItem }
