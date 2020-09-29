@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Header from '@components/header'
 
 const Product = () => {
   return (
     <>
+      <Header/>
       <h1>Product</h1>
       <h2>
         <Link href='/'>

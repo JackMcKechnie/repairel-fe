@@ -2,19 +2,21 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
+    font-family: sans-serif;
     box-sizing: border-box;
   }
 `;
 
 const theme = {
   colors: {
-    primary: 'red',
-    secondary: 'green',
+    dark: 'black',
+    light: 'white',
   },
 };
 
+// eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -26,4 +28,4 @@ export default function App({ Component, pageProps }) {
   );
 }
 
-// Docs: https://github.com/vercel/next.js/tree/master/examples/with-styled-components
+// Docs: https://nextjs.org/docs/advanced-features/custom-app
