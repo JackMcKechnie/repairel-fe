@@ -3,18 +3,18 @@ import Link from "next/link";
 import Logo from "../../public/repairel-logo.svg";
 
 import { Wrapper, MenuList, MenuListItem, MenuLogo } from "./Menu.style";
-import Socials from '@components/socials'
+import Socials from "@components/socials";
 
-const Menu = () => {
+const Menu = ({ open, setOpen }) => {
   const handleLinkClick = () => {
-    // close menu
+    setOpen(!open);
   };
 
   const menu = ["shop", "about", "faq"];
   const menuItems = menu.map((item, index) => {
     return (
       <MenuListItem key={index}>
-        <Link key={index} onClick={handleLinkClick()} href={`/${item}`}>
+        <Link key={index} onClick={() => handleLinkClick()} href={`/${item}`}>
           <a>{item}</a>
         </Link>
       </MenuListItem>
@@ -22,7 +22,7 @@ const Menu = () => {
   });
 
   return (
-    <Wrapper>
+    <Wrapper open={open}>
       <MenuLogo src={Logo}></MenuLogo>
       <MenuList>{menuItems}</MenuList>
       <Socials></Socials>

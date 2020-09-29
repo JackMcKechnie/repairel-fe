@@ -7,12 +7,13 @@ const Wrapper = styled.div`
   z-index: "99";
   width: "100%";
   height: 100vh;
-  /* background-color: hsla(0,100%,50%, 0.2); */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   text-transform: uppercase;
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
 `;
 
 const MenuList = styled.ul`

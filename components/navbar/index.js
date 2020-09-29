@@ -4,8 +4,8 @@ import HamburgerMenu from 'react-hamburger-menu';
 import Link from 'next/link';
 // import Menu from '@components/menu';
 
-const Navbar = () => {
-  const [open, setOpen] = React.useState(false);
+const Navbar = ({ open, setOpen }) => {
+  // const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
