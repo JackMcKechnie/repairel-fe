@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import Header from '@components/header'
+import Header from "@components/header";
+import Product from "@components/product"
 
 export default function Home() {
 
@@ -13,20 +14,11 @@ export default function Home() {
       <main>
         <Header />
         <h1 className="title">
-          <Link href="/checkout">
-            <a>Checkout</a>
-          </Link>
-        </h1>
-        <h1 className="title">
           <Link href="/comparison">
             <a>Comparison</a>
           </Link>
         </h1>
-        <h1 className="title">
-          <Link href="/product">
-            <a>Product</a>
-          </Link>
-        </h1>
+        <Product></Product>
       </main>
     </div>
   );

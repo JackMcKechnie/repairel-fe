@@ -1,15 +1,13 @@
-import React from 'react';
-import Wrapper from '@components/navbar/Navbar.style';
-import HamburgerMenu from 'react-hamburger-menu';
-import Link from 'next/link';
-// import Menu from '@components/menu';
+import React from "react";
+import Wrapper from "@components/navbar/Navbar.style";
+import HamburgerMenu from "react-hamburger-menu";
+import Link from "next/link";
 
 const Navbar = ({ open, setOpen }) => {
-  // const [open, setOpen] = React.useState(false);
-
   const handleClick = () => {
     setOpen(!open);
   };
+
   return (
     <Wrapper>
       <div>
@@ -20,20 +18,18 @@ const Navbar = ({ open, setOpen }) => {
           height={20}
           strokeWidth={2}
           rotate={0}
-          color='black'
+          color="black"
           borderRadius={0}
         />
       </div>
       <h1>
         <Link href="/">
-      <a>REPAIREL</a>
-      </Link>
+          <a>REPAIREL</a>
+        </Link>
       </h1>
       <p>
-        <Link href="/checkout">
-        cart
-        </Link>
-        </p>
+        <Link href="/checkout">cart</Link>
+      </p>
     </Wrapper>
   );
 };

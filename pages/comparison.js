@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Header from '@components/header'
 
 const Comparison = () => {
   return (
     <>
+      <Header/>
       <h1>Comparison</h1>
       <h2>
         <Link href='/'>
