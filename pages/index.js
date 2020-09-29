@@ -1,10 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import Navbar from "@components/navbar";
-import Menu from "@components/menu";
+import Header from '@components/header'
 
 export default function Home() {
-  const [open, setOpen] = React.useState(false);
 
   return (
     <div>
@@ -13,10 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <header>
-          <Menu open={open} setOpen={setOpen} />
-          <Navbar open={open} setOpen={setOpen} />
-        </header>
+        <Header />
         <h1 className="title">
           <Link href="/checkout">
             <a>Checkout</a>
