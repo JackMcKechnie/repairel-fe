@@ -1,4 +1,4 @@
-import { ProductInfoList, ProductInfoListItem } from "./ProductInfo.style";
+import { ProductInfoList, ProductInfoListItem, Rating } from "./ProductInfo.style";
 
 const ProductInfo = ({ price, name, rating }) => {
   return (
@@ -7,7 +7,7 @@ const ProductInfo = ({ price, name, rating }) => {
         <ProductInfoListItem>{name}</ProductInfoListItem>
         <ProductInfoListItem>{`£${price}`}</ProductInfoListItem>
       </ProductInfoList>
-      <p>{rating}</p>
+      <Rating rating={rating}>{rating}</Rating>
     </>
   );
 };

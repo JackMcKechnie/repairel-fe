@@ -1,7 +1,7 @@
 // import Link from "next/link";
 import {
   ProductsWrapper,
-  ProductWrapper,
+  ProductCard,
   ProductImage,
   ProductInfoWrapper,
 } from "./Product.style";
@@ -17,14 +17,10 @@ const Product = () => {
       .then((data) => setProducts(data));
   }, []);
 
-  React.useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   const productRender = (products) => {
     return products.map((product) => {
       return (
-        <ProductWrapper key={product.id}>
+        <ProductCard key={product.id}>
           <ProductImage
             key={product.id}
             src={product.images[0].url}
@@ -32,7 +28,7 @@ const Product = () => {
           <ProductInfoWrapper>
             <ProductInfo key={product.id} price={product.price} name={product.name} rating={product.rating}/>
           </ProductInfoWrapper>
-          </ProductWrapper>
+          </ProductCard>
         
       );
     });
