@@ -1,11 +1,13 @@
 import Header from "@components/header";
 
+import { LinedHeading } from './Pages.style'
+
 const About = () => {
   return (
     <>
       <Header />
       <section style={{ margin: "1rem" }}>
-        <h1>About</h1>
+        <LinedHeading>About us</LinedHeading>
       </section>
     </>
   );

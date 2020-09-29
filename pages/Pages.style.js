@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 const OptionsList = styled.ul`
     list-style: none;
@@ -15,4 +15,25 @@ const OptionsItem = styled.li`
     text-align: center;
 `
 
-export { OptionsList, OptionsItem }
+const underline = keyframes`
+    0% {width: 0px}
+    100% {width: 100%}
+`
+
+const LinedHeading = styled.h1`
+    width: 100%;
+    padding-bottom: 1rem;
+    position: relative;
+    &::before {
+        content: "";
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid black;
+        animation: ${underline} 1s linear;
+      }
+`
+
+
+export { OptionsList, OptionsItem, LinedHeading }

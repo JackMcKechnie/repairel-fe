@@ -18,7 +18,7 @@ const Product = () => {
     const start = products.length < count ? true : false;
     if (start) {
       fetch(
-        `http://35.178.141.40:1337/products?_start=${products.length}&_limit=20`
+        `http://35.178.141.40:1337/products?_start=${products.length}&_limit=50`
       )
         .then((response) => response.json())
         .then((data) => setProducts(products.concat(data)));
