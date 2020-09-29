@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const ProductsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 0.5fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 0.5fr));
   grid-gap: 1rem;
 `;
 
-const ProductWrapper = styled.div`
+const ProductCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,6 +15,7 @@ const ProductWrapper = styled.div`
 
 const ProductImage = styled.img`
   width: 100%;
+  max-height: 353px;
 `;
 
 const ProductInfoWrapper = styled.div`
@@ -24,4 +25,4 @@ const ProductInfoWrapper = styled.div`
   width: 100%;
 `;
 
-export { ProductsWrapper, ProductImage, ProductInfoWrapper, ProductWrapper };
+export { ProductsWrapper, ProductImage, ProductInfoWrapper, ProductCard };

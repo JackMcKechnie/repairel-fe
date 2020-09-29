@@ -19,8 +19,8 @@ const Navbar = ({ open, setOpen }) => {
         <HamburgerMenu
           isOpen={open}
           menuClicked={() => handleClick()}
-          width={30}
-          height={20}
+          width={33}
+          height={22}
           strokeWidth={2}
           rotate={0}
           color="black"
@@ -34,7 +34,7 @@ const Navbar = ({ open, setOpen }) => {
       </h1>
       <Link href='/checkout'>
           <a style={navStyles}>
-            <img src={Cart}></img>
+            <img src={Cart} style={{display: "block"}}></img>
           </a>
         </Link>
     </Wrapper>

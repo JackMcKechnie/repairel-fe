@@ -1,7 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
+// import Link from "next/link";
 import Header from "@components/header";
 import Product from "@components/product";
+
+import { OptionsList, OptionsItem } from "../styles/global";
 
 export default function Home() {
   return (
@@ -12,12 +14,11 @@ export default function Home() {
       </Head>
       <main>
         <Header />
-        <section style={{margin: "1rem"}}>
-          <h1 className="title">
-            <Link href="/comparison">
-              <a>Comparison</a>
-            </Link>
-          </h1>
+        <section style={{ margin: "1rem" }}>
+          <OptionsList>
+            <OptionsItem>Compare</OptionsItem>
+            <OptionsItem>Filter</OptionsItem>
+          </OptionsList>
           <Product />
         </section>
       </main>
