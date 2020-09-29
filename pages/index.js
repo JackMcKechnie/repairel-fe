@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "@components/header";
 import Product from "@components/product";
 
-import { OptionsList, OptionsItem } from "./Pages.style";
+import { OptionsList, OptionsItem } from "../styles/global";
 
 export default function Home() {
   return (

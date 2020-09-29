@@ -1,6 +1,6 @@
 import Header from "@components/header";
 
-import { LinedHeading } from './Pages.style'
+import { LinedHeading } from "../styles/global";
 
 const About = () => {
   return (
