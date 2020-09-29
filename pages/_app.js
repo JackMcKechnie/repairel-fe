@@ -4,7 +4,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0 auto;
     padding: 0;
-    max-width: 1250px;
     font-family: sans-serif;
     box-sizing: border-box;
   }
@@ -12,8 +11,8 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: 'black',
-    secondary: 'green',
+    dark: 'black',
+    light: 'white',
   },
 };
 

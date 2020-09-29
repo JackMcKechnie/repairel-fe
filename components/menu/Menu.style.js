@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: "absolute";
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: "99";
-  width: "100%";
+  z-index: 99;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,8 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  background-color: ${({ theme }) => theme.colors.light};
+
 `;
 
 const MenuList = styled.ul`

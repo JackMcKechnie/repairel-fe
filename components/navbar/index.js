@@ -2,15 +2,20 @@ import React from "react";
 import Wrapper from "@components/navbar/Navbar.style";
 import HamburgerMenu from "react-hamburger-menu";
 import Link from "next/link";
+import Cart from '../../public/cart.svg'
 
 const Navbar = ({ open, setOpen }) => {
   const handleClick = () => {
     setOpen(!open);
   };
 
+  const navStyles = {
+    zIndex: "100",
+  };
+
   return (
     <Wrapper>
-      <div>
+      <div style={navStyles}>
         <HamburgerMenu
           isOpen={open}
           menuClicked={() => handleClick()}
@@ -27,9 +32,11 @@ const Navbar = ({ open, setOpen }) => {
           <a>REPAIREL</a>
         </Link>
       </h1>
-      <p>
-        <Link href="/checkout">cart</Link>
-      </p>
+      <Link href='/checkout'>
+          <a style={navStyles}>
+            <img src={Cart}></img>
+          </a>
+        </Link>
     </Wrapper>
   );
 };

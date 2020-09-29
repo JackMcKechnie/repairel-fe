@@ -4,8 +4,8 @@ const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${({ theme }) => theme.colors.primary};
-  background-color: pink;
+  color: ${({ theme }) => theme.colors.dark};
+  margin: 1rem;
 `;
 
 export default Wrapper;

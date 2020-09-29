@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import Header from "@components/header";
-import Product from "@components/product"
+import Product from "@components/product";
 
 export default function Home() {
-
   return (
     <div>
       <Head>
@@ -13,12 +12,14 @@ export default function Home() {
       </Head>
       <main>
         <Header />
-        <h1 className="title">
-          <Link href="/comparison">
-            <a>Comparison</a>
-          </Link>
-        </h1>
-        <Product></Product>
+        <section style={{margin: "1rem"}}>
+          <h1 className="title">
+            <Link href="/comparison">
+              <a>Comparison</a>
+            </Link>
+          </h1>
+          <Product />
+        </section>
       </main>
     </div>
   );

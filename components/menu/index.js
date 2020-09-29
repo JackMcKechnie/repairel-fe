@@ -14,8 +14,8 @@ const Menu = ({ open, setOpen }) => {
   const menuItems = menu.map((item, index) => {
     return (
       <MenuListItem key={index}>
-        <Link key={index} onClick={() => handleLinkClick()} href={`/${item}`}>
-          <a>{item}</a>
+        <Link key={index}  href={item === "shop" ? '/' : `/${item}`}>
+          <a onClick={() => handleLinkClick()}>{item}</a>
         </Link>
       </MenuListItem>
     );
