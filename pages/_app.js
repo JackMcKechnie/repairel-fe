@@ -1,3 +1,5 @@
+// import Head from 'next/head';
+
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
