@@ -1,8 +1,9 @@
-import React from "react";
-import Wrapper from "@components/navbar/Navbar.style";
-import HamburgerMenu from "react-hamburger-menu";
-import Link from "next/link";
-import Cart from '../../public/cart.svg'
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import HamburgerMenu from 'react-hamburger-menu';
+
+import Wrapper from '@components/navbar/Navbar.style';
+import Cart from '../../public/cart.svg';
 
 const Navbar = ({ open, setOpen }) => {
   const handleClick = () => {
@@ -10,7 +11,7 @@ const Navbar = ({ open, setOpen }) => {
   };
 
   const navStyles = {
-    zIndex: "100",
+    zIndex: '2',
   };
 
   return (
@@ -23,22 +24,28 @@ const Navbar = ({ open, setOpen }) => {
           height={22}
           strokeWidth={2}
           rotate={0}
-          color="black"
+          color='black'
           borderRadius={0}
         />
       </div>
       <h1>
-        <Link href="/">
+        <Link href='/'>
           <a>REPAIREL</a>
         </Link>
       </h1>
       <Link href='/checkout'>
-          <a style={navStyles}>
-            <img src={Cart} style={{display: "block"}}></img>
-          </a>
-        </Link>
+        <a
+          style={navStyles}
+          className='header__summary snipcart-checkout snipcart-summary'
+        >
+          <img src={Cart} style={{ display: 'block' }}></img>
+        </a>
+      </Link>
     </Wrapper>
   );
 };
-
+Navbar.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+};
 export default Navbar;

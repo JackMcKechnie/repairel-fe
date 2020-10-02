@@ -1,83 +1,64 @@
-// import Link from "next/link";
-import InfiniteScroll from "react-infinite-scroll-component";
-import {
-  ProductsWrapper,
-  ProductCard,
-  ProductImage,
-  ProductInfoWrapper,
-} from "./Product.style";
+import PropTypes from 'prop-types';
+import { Rating } from '@components/productInfo/ProductInfo.style';
+import Slider from './Slider';
 
-import ProductInfo from "@components/productInfo";
-
-const Product = () => {
-  const [products, setProducts] = React.useState([]);
-  const [hasMore, setHasMore] = React.useState(true);
-  const [count, setCount] = React.useState(0);
-
-  const fetchData = () => {
-    const start = products.length < count ? true : false;
-    if (start) {
-      fetch(
-        `http://35.178.141.40:1337/products?_start=${products.length}&_limit=50`
-      )
-        .then((response) => response.json())
-        .then((data) => setProducts(products.concat(data)));
-    } else {
-      setHasMore(false);
-    }
-  };
-
-  React.useEffect(() => {
-    if (count !== 0) {
-      fetchData();
-    }
-  }, [count]);
-
-  React.useEffect(() => {
-    fetch(`http://35.178.141.40:1337/products/count`)
-      .then((response) => response.json())
-      .then((data) => setCount(data));
-  }, []);
-
-  const productRender = (products) => {
-    return products.map((product) => {
-      return (
-        <ProductCard key={product.id}>
-          <ProductImage key={product.id} src={product.images[0].url} />
-          <ProductInfoWrapper>
-            <ProductInfo
-              key={product.id}
-              price={product.price}
-              name={product.name}
-              rating={product.rating}
-            />
-          </ProductInfoWrapper>
-        </ProductCard>
-      );
-    });
-  };
-
+const Product = ({ product, url }) => {
   return (
-    products.length !== 0 && (
-      <ProductsWrapper>
-        <InfiniteScroll
-          dataLength={products.length}
-          next={() => fetchData()}
+    <>
+      <Slider images={product.images} />
+      <div
+        className='product'
+        style={{
+          padding: '1rem',
+        }}
+      >
+        <div
           style={{
-            width: "calc(100vw - 2rem)",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 0.5fr))",
-            gridGap: "1rem",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
-          hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
-          scrollableTarget="scrollableDiv"
         >
-          {productRender(products)}
-        </InfiniteScroll>
-      </ProductsWrapper>
-    )
+          <div>
+            <h2 className='product__title'>{product.name}</h2>
+            <p className='product__price'>{product.price}</p>
+          </div>
+          <Rating rating={product.rating}>{product.rating}</Rating>
+        </div>
+        <div className='product__price-button-container'>
+          <button
+            className='snipcart-add-item product__button'
+            data-item-id={product.id}
+            data-item-name={product.name}
+            data-item-price={product.price}
+            data-item-url={url}
+            data-item-image={product.images[0].url}
+          >
+            Add to cart
+          </button>
+        </div>
+        <h4>Description</h4>
+        <p className='product__description'>{product.description}</p>
+        <h4>Sustainability and ethics</h4>
+        <div>
+          <p>
+            Vegan: <span>{product.ethics_and_sustainability.vegan}</span>
+          </p>
+          <p>
+            Wages: <span>{product.ethics_and_sustainability.wages}</span>
+          </p>
+          <p>
+            Recyclability:{' '}
+            <span>{product.ethics_and_sustainability.recyclability}</span>
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 
+Product.propTypes = {
+  product: PropTypes.object,
+  url: PropTypes.string,
+};
 export default Product;

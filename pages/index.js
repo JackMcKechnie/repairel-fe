@@ -1,27 +1,37 @@
-import Head from "next/head";
+import Head from 'next/head';
 // import Link from "next/link";
-import Header from "@components/header";
-import Product from "@components/product";
+import PropTypes from 'prop-types';
+import Header from '@components/header';
+import ProductList from '@components/productList';
 
-import { OptionsList, OptionsItem } from "../styles/global";
+import { OptionsList, OptionsItem } from '../styles/global';
 
-export default function Home() {
+export default function Home({ list }) {
   return (
     <div>
       <Head>
-        <title>REPAIREL</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title id='title'>REPAIREL</title>
       </Head>
       <main>
         <Header />
-        <section style={{ margin: "1rem" }}>
+        <section style={{ margin: '1rem' }}>
           <OptionsList>
             <OptionsItem>Compare</OptionsItem>
             <OptionsItem>Filter</OptionsItem>
           </OptionsList>
-          <Product />
+          <ProductList list={list} />
         </section>
       </main>
     </div>
   );
 }
+
+export async function getServerSideProps() {
+  const res = await fetch(`http://35.178.141.40:1337/products`);
+  const json = await res.json();
+  return { props: { list: json } };
+}
+
+Home.propTypes = {
+  list: PropTypes.array,
+};

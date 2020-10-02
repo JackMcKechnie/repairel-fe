@@ -1,4 +1,10 @@
-import { ProductInfoList, ProductInfoListItem, Rating } from "./ProductInfo.style";
+import PropTypes from 'prop-types';
+
+import {
+  ProductInfoList,
+  ProductInfoListItem,
+  Rating,
+} from './ProductInfo.style';
 
 const ProductInfo = ({ price, name, rating }) => {
   return (
@@ -10,6 +16,12 @@ const ProductInfo = ({ price, name, rating }) => {
       <Rating rating={rating}>{rating}</Rating>
     </>
   );
+};
+
+ProductInfo.propTypes = {
+  price: PropTypes.number,
+  name: PropTypes.string,
+  rating: PropTypes.number,
 };
 
 export default ProductInfo;
