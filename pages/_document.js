@@ -36,13 +36,11 @@ export default class MyDocument extends Document {
           <link rel='icon' href='/favicon.ico' id='favicon' />
           <link
             rel='stylesheet'
-            href='https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css'
-            id='snipcart-css'
+            href='https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css'
           />
           <script
             async
-            src='https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js'
-            id='snipcart-script'
+            src='https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js'
           ></script>
           <div
             id='snipcart'

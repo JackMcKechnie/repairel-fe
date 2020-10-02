@@ -1,7 +1,8 @@
-import React from 'react';
-import Wrapper from '@components/navbar/Navbar.style';
-import HamburgerMenu from 'react-hamburger-menu';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
+import HamburgerMenu from 'react-hamburger-menu';
+
+import Wrapper from '@components/navbar/Navbar.style';
 import Cart from '../../public/cart.svg';
 
 const Navbar = ({ open, setOpen }) => {
@@ -43,5 +44,8 @@ const Navbar = ({ open, setOpen }) => {
     </Wrapper>
   );
 };
-
+Navbar.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+};
 export default Navbar;

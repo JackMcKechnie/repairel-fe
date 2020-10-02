@@ -1,24 +1,64 @@
-const Product = () => {
+import PropTypes from 'prop-types';
+import { Rating } from '@components/productInfo/ProductInfo.style';
+import Slider from './Slider';
+
+const Product = ({ product, url }) => {
   return (
-    <div className='product'>
-      <h2 className='product__title'>Doc Marten</h2>
-      <p className='product__description'>Very nice shoes!</p>
-      {/* <img src={product.image} alt='' /> */}
-      <div className='product__price-button-container'>
-        <div className='product__price'>40</div>
-        <button
-          className='snipcart-add-item product__button'
-          data-item-id={4}
-          data-item-name={'Chelsea Boots'}
-          data-item-price={40}
-          // data-item-url={router.pathname}
-          // data-item-image={product.image}
+    <>
+      <Slider images={product.images} />
+      <div
+        className='product'
+        style={{
+          padding: '1rem',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
         >
-          Add to cart
-        </button>
+          <div>
+            <h2 className='product__title'>{product.name}</h2>
+            <p className='product__price'>{product.price}</p>
+          </div>
+          <Rating rating={product.rating}>{product.rating}</Rating>
+        </div>
+        <div className='product__price-button-container'>
+          <button
+            className='snipcart-add-item product__button'
+            data-item-id={product.id}
+            data-item-name={product.name}
+            data-item-price={product.price}
+            data-item-url={url}
+            data-item-image={product.images[0].url}
+          >
+            Add to cart
+          </button>
+        </div>
+        <h4>Description</h4>
+        <p className='product__description'>{product.description}</p>
+        <h4>Sustainability and ethics</h4>
+        <div>
+          <p>
+            Vegan: <span>{product.ethics_and_sustainability.vegan}</span>
+          </p>
+          <p>
+            Wages: <span>{product.ethics_and_sustainability.wages}</span>
+          </p>
+          <p>
+            Recyclability:{' '}
+            <span>{product.ethics_and_sustainability.recyclability}</span>
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
+Product.propTypes = {
+  product: PropTypes.object,
+  url: PropTypes.string,
+};
 export default Product;
