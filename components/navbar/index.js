@@ -33,14 +33,12 @@ const Navbar = ({ open, setOpen }) => {
           <a>REPAIREL</a>
         </Link>
       </h1>
-      <Link href='/checkout'>
-        <a
-          style={navStyles}
-          className='header__summary snipcart-checkout snipcart-summary'
-        >
-          <img src={Cart} style={{ display: 'block' }}></img>
-        </a>
-      </Link>
+      <a
+        style={navStyles}
+        className='header__summary snipcart-checkout snipcart-summary'
+      >
+        <img src={Cart} style={{ display: 'block' }}></img>
+      </a>
     </Wrapper>
   );
 };
