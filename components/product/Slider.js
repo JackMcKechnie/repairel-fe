@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 
+import { SliderImage, SliderContainer } from './Product.style'
+
 const Slider = ({ images }) => {
   const slider = images.map((item) => {
     return (
-      <img
-        style={{ maxWidth: '70%', marginRight: '.5rem', maxHeight: '500px' }}
+      <SliderImage
         src={item.url}
         alt={item.alternativeText}
         key={item.id}
       />
     );
   });
-  return <div style={{ display: 'flex', overflow: 'scroll' }}>{slider}</div>;
+  return <SliderContainer>{slider}</SliderContainer>;
 };
 
 Slider.propTypes = {

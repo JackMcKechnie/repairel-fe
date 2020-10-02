@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { Rating } from '@components/productInfo/ProductInfo.style';
 import Slider from './Slider';
 
+import { AddToCart, MainInfo } from './Product.style'
+
 const Product = ({ product, url }) => {
   return (
     <>
@@ -12,21 +14,15 @@ const Product = ({ product, url }) => {
           padding: '1rem',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
+        <MainInfo>
           <div>
             <h2 className='product__title'>{product.name}</h2>
             <p className='product__price'>{product.price}</p>
           </div>
           <Rating rating={product.rating}>{product.rating}</Rating>
-        </div>
+        </MainInfo>
         <div className='product__price-button-container'>
-          <button
+          <AddToCart
             className='snipcart-add-item product__button'
             data-item-id={product.id}
             data-item-name={product.name}
@@ -35,7 +31,7 @@ const Product = ({ product, url }) => {
             data-item-image={product.images[0].url}
           >
             Add to cart
-          </button>
+          </AddToCart>
         </div>
         <h4>Description</h4>
         <p className='product__description'>{product.description}</p>

@@ -5,7 +5,7 @@ const Wrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   color: ${({ theme }) => theme.colors.dark};
-  margin: 1rem;
+  padding: 1rem;
 `;
 
 export default Wrapper;
