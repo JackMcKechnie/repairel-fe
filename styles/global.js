@@ -1,5 +1,11 @@
 import styled, {keyframes} from "styled-components";
 
+const StyledSection = styled.section`
+display: flex,
+          flexDirection: column,
+          justifyContent: space-between,
+          minHeight: 85vh,
+`
 const OptionsList = styled.ul`
     list-style: none;
     padding: 0;
@@ -36,4 +42,4 @@ const LinedHeading = styled.h1`
 `
 
 
-export { OptionsList, OptionsItem, LinedHeading }
+export { OptionsList, OptionsItem, LinedHeading, StyledSection }

@@ -25,7 +25,7 @@ const Menu = ({ open, setOpen }) => {
     <Wrapper open={open}>
       <MenuLogo src={Logo}></MenuLogo>
       <MenuList>{menuItems}</MenuList>
-      <Socials></Socials>
+      <Socials />
     </Wrapper>
   );
 };

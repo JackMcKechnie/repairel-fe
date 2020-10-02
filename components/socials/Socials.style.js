@@ -5,6 +5,8 @@ const SocialsList = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  max-width: 10.5rem;
+  margin: 0 auto;
 `;
 
 const SocialsListItem = styled.li`
