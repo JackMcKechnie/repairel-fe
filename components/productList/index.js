@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import {
-  ProductsWrapper,
   ProductCard,
   ProductImage,
   ProductInfoWrapper,
   OptionsItem,
   OptionsList,
   SoldOutWrapper,
+  ImageWrapper,
+  InfiniteScrollStyled,
 } from './ProductList.style';
 
 import ProductInfo from '@components/productInfo';
@@ -42,11 +42,14 @@ const ProductList = ({ list }) => {
             as={`/product/${product.id}`}
           >
             <ProductCard key={product.id}>
-              <ProductImage
-                key={product.id}
-                stock={product.stock}
-                src={product.images[0].url}
-              />
+              <ImageWrapper>
+                <ProductImage
+                  loading='lazy'
+                  key={product.id}
+                  stock={product.stock}
+                  src={product.images[0].url}
+                />
+              </ImageWrapper>
               <ProductInfoWrapper>
                 <ProductInfo
                   key={product.id}
@@ -66,8 +69,14 @@ const ProductList = ({ list }) => {
             as={`/product/${product.id}`}
           >
             <ProductCard key={product.id}>
-              <ProductImage key={product.id} src={product.images[0].url} />
-              <SoldOutWrapper>Sold Out</SoldOutWrapper>
+              <ImageWrapper>
+                <ProductImage
+                  loading='lazy'
+                  key={product.id}
+                  src={product.images[0].url}
+                />
+                <SoldOutWrapper>Sold Out</SoldOutWrapper>
+              </ImageWrapper>
               <ProductInfoWrapper>
                 <ProductInfo
                   key={product.id}
@@ -86,7 +95,6 @@ const ProductList = ({ list }) => {
     products.length !== 0 && (
       <section>
         <OptionsList>
-          <OptionsItem>Compare</OptionsItem>
           <OptionsItem
             onClick={() => setToggleFilter(!toggleFilter)}
             style={
@@ -97,25 +105,18 @@ const ProductList = ({ list }) => {
           >
             Filter
           </OptionsItem>
+          <OptionsItem>Compare</OptionsItem>
         </OptionsList>
         {toggleFilter && <Filter />}
-        <ProductsWrapper>
-          <InfiniteScroll
-            dataLength={products.length}
-            next={() => setCount((count += 20))}
-            style={{
-              width: 'calc(100vw - 2rem)',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 0.5fr))',
-              gridGap: '1rem',
-            }}
-            hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            scrollableTarget='scrollableDiv'
-          >
-            {productRender(products)}
-          </InfiniteScroll>
-        </ProductsWrapper>
+        <InfiniteScrollStyled
+          dataLength={products.length}
+          next={() => setCount((count += 20))}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          scrollableTarget='scrollableDiv'
+        >
+          {productRender(products)}
+        </InfiniteScrollStyled>
       </section>
     )
   );
