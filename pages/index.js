@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Header from '@components/header';
 import ProductList from '@components/productList';
 
-import { OptionsList, OptionsItem } from '../styles/global';
-
 export default function Home({ list }) {
   return (
     <div>
@@ -13,13 +11,7 @@ export default function Home({ list }) {
       </Head>
       <main>
         <Header />
-        <section style={{ margin: '1rem' }}>
-          <OptionsList>
-            <OptionsItem>Compare</OptionsItem>
-            <OptionsItem>Filter</OptionsItem>
-          </OptionsList>
-          <ProductList list={list} />
-        </section>
+        <ProductList list={list} />
       </main>
     </div>
   );

@@ -1,21 +1,20 @@
-import Header from "@components/header";
-import Head from "next/head";
-import Markdown from "markdown-to-jsx";
-import PropTypes from "prop-types";
-import Socials from "@components/socials";
+import Header from '@components/header';
+import Head from 'next/head';
+import Markdown from 'markdown-to-jsx';
+import PropTypes from 'prop-types';
+import Socials from '@components/socials';
 
-import { LinedHeading, StyledSection } from "../styles/global";
+import { LinedHeading, StyledSection } from '../styles/global';
 
 const FAQ = ({ content }) => {
-  console.log(content);
   return (
     <>
       <Head>
-        <title id="title">REPAIREL | FAQ</title>
+        <title id='title'>REPAIREL | FAQ</title>
       </Head>
       <Header />
       <StyledSection>
-        <main style={{ margin: "1rem" }}>
+        <main style={{ margin: '1rem' }}>
           <LinedHeading>FAQs</LinedHeading>
           <Markdown>{content[0].text}</Markdown>
         </main>
