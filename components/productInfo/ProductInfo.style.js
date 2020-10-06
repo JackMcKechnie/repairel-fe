@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ProductInfoList = styled.ul`
   padding: 0;
@@ -15,15 +15,16 @@ const Rating = styled.span`
   min-height: 40px;
   min-width: 40px;
   border-radius: 50%;
-  background-color: ${({ rating }) =>
+  color: ${({ rating }) =>
     rating < 60
-      ? "hsl(2, 100%, 72%)"
+      ? 'hsl(2, 100%, 72%)'
       : rating >= 60 && rating < 80
-      ? "hsl(31, 100%, 61%)"
-      : "hsl(110, 77%, 69%)"};
+      ? 'hsl(31, 100%, 61%)'
+      : 'hsl(93, 88%, 36%)'};
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 `;
 
 export { ProductInfoList, ProductInfoListItem, Rating };
