@@ -1,45 +1,30 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const StyledSection = styled.section`
-display: flex,
-          flexDirection: column,
-          justifyContent: space-between,
-          minHeight: 85vh,
-`
-const OptionsList = styled.ul`
-    list-style: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-`  
-
-const OptionsItem = styled.li`
-    padding: 0;
-    font-size: 1.4rem;
-    flex-basis: 50%;
-    text-align: center;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 85vh;
+`;
 
 const underline = keyframes`
     0% {width: 0px}
     100% {width: 100%}
-`
+`;
 
 const LinedHeading = styled.h1`
+  width: 100%;
+  padding-bottom: 1rem;
+  position: relative;
+  &::before {
+    content: '';
     width: 100%;
-    padding-bottom: 1rem;
-    position: relative;
-    &::before {
-        content: "";
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-bottom: 2px solid black;
-        animation: ${underline} 1s linear;
-      }
-`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid black;
+    animation: ${underline} 1s linear;
+  }
+`;
 
-
-export { OptionsList, OptionsItem, LinedHeading, StyledSection }
+export { LinedHeading, StyledSection };
