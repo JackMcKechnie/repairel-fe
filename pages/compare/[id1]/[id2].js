@@ -1,25 +1,28 @@
-import Link from 'next/link';
 import Header from '@components/header';
+import Compare from '@components/compare';
+import PropTypes from 'prop-types';
 
-const Comparison = () => {
+const Comparison = ({ products }) => {
   return (
     <>
       <Header />
-      <h1>Comparison</h1>
-      <h2>
-        <Link href='/'>
-          <a>Back to home</a>
-        </Link>
-      </h2>
+      <Compare product1={products[0]} product2={products[1]} />
     </>
   );
 };
-export default Comparison;
 
-{
-  /* <Link
-   href="/post/[postId]/[commentId]"
-   as={`/post/${postId}/${commentId}`}>
-      <a>link to comment</a>
-</Link> */
+export async function getServerSideProps(context) {
+  const product1 = context.params.id1;
+  const product2 = context.params.id2;
+  const res = await fetch(
+    `http://35.178.141.40:1337/products/?id_in=${product1}&id_in=${product2}`
+  );
+  const json = await res.json();
+  return { props: { products: json } };
 }
+
+Comparison.propTypes = {
+  products: PropTypes.array,
+};
+
+export default Comparison;
