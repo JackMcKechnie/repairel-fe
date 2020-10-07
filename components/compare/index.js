@@ -99,7 +99,30 @@ const Compare = ({ product1, product2 }) => {
       </>
     );
   };
-
+  const icons = {
+    vegan: Leaf,
+    wages: Leaf,
+    recyclability: Leaf,
+  };
+  // list of categories
+  const categories = Object.keys(product1.ethics_and_sustainability);
+  const row = [];
+  // iterate over cathegories but leave out the first (id) and the last
+  for (let category of categories.slice(1, -1)) {
+    row.push([
+      product1.ethics_and_sustainability[category],
+      icons[category] || Leaf,
+      product2.ethics_and_sustainability[category],
+      Arrow,
+    ]);
+  }
+  // for the last category we do the same but without the arrow icon
+  const lastCategory = categories[categories.length - 1];
+  row.push([
+    product1.ethics_and_sustainability[lastCategory],
+    icons[lastCategory] || Leaf,
+    product2.ethics_and_sustainability[lastCategory],
+  ]);
   return (
     <>
       <ComparisonHeader>
@@ -122,24 +145,9 @@ const Compare = ({ product1, product2 }) => {
       </ComparisonHeader>
       {length !== 0 && (
         <ComparisonGrid length={length}>
-          {/* {renderEthics()} */}
-          {renderRow(
-            product1.ethics_and_sustainability.vegan,
-            Leaf,
-            product2.ethics_and_sustainability.vegan,
-            Arrow
-          )}
-          {renderRow(
-            product1.ethics_and_sustainability.wages,
-            Leaf,
-            product2.ethics_and_sustainability.wages,
-            Arrow
-          )}
-          {renderRow(
-            product1.ethics_and_sustainability.recyclability,
-            Leaf,
-            product2.ethics_and_sustainability.recyclability
-          )}
+          {row.map((item) => {
+            return renderRow(...item);
+          })}
         </ComparisonGrid>
       )}
     </>
