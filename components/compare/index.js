@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import {
   ComparisonHeader,
   ComparisonGrid,
@@ -7,9 +8,10 @@ import {
   CircleDiv,
   EthicsIcon,
   ArrowIcon,
+  ProductInfo,
 } from '@components/compare/Compare.style';
 import { Rating } from '@components/productInfo/ProductInfo.style';
-import PropTypes from 'prop-types';
+
 import Leaf from '../../public/leaf.svg';
 import Arrow from '../../public/arrow.svg';
 
@@ -80,15 +82,23 @@ const Compare = ({ product1, product2 }) => {
   const handleCircles = (int) => {
     let array = [];
     _.times(int, (i) => {
-      array.push(<Circle key={i} />);
+      array.push(<Circle int={int} key={i} />);
     });
     return array;
   };
 
-  //   let card = [];
-  // _.times(8, (i) => {
-  //   card.push(<span className="busterCards" key={i}>♦</span>);
-  // });
+  const renderRow = (product1, icon, product2, arrow) => {
+    return (
+      <>
+        <CircleDiv int={product1}>{handleCircles(product1)}</CircleDiv>
+        <div>
+          <EthicsIcon src={icon} />
+          {arrow && <ArrowIcon src={Arrow} />}
+        </div>
+        <CircleDiv int={product2}>{handleCircles(product2)}</CircleDiv>
+      </>
+    );
+  };
 
   return (
     <>
@@ -101,43 +111,35 @@ const Compare = ({ product1, product2 }) => {
           src={product2.images[0].url}
           alt={product2.images[0].alternativeText}
         ></Image>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <ProductInfo>
           <p>{product1.name}</p>
           <Rating rating={product1.rating}>{product1.rating}</Rating>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        </ProductInfo>
+        <ProductInfo>
           <p>{product2.name}</p>
           <Rating rating={product2.rating}>{product2.rating}</Rating>
-        </div>
+        </ProductInfo>
       </ComparisonHeader>
       {length !== 0 && (
         <ComparisonGrid length={length}>
           {/* {renderEthics()} */}
-          <CircleDiv style={{ display: 'flex' }}>
-            {handleCircles(product1.ethics_and_sustainability.vegan)}
-          </CircleDiv>
-          <div>
-            <EthicsIcon src={Leaf} />
-            <ArrowIcon src={Arrow} />
-          </div>
-
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.vegan)}
-          </CircleDiv>
-          <CircleDiv>
-            {handleCircles(product1.ethics_and_sustainability.wages)}
-          </CircleDiv>
-          <EthicsIcon src={Leaf} />
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.wages)}
-          </CircleDiv>
-          <CircleDiv>
-            {handleCircles(product1.ethics_and_sustainability.recyclability)}
-          </CircleDiv>
-          <EthicsIcon src={Leaf} />
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.recyclability)}
-          </CircleDiv>
+          {renderRow(
+            product1.ethics_and_sustainability.vegan,
+            Leaf,
+            product2.ethics_and_sustainability.vegan,
+            Arrow
+          )}
+          {renderRow(
+            product1.ethics_and_sustainability.wages,
+            Leaf,
+            product2.ethics_and_sustainability.wages,
+            Arrow
+          )}
+          {renderRow(
+            product1.ethics_and_sustainability.recyclability,
+            Leaf,
+            product2.ethics_and_sustainability.recyclability
+          )}
         </ComparisonGrid>
       )}
     </>
