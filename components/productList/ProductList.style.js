@@ -64,7 +64,10 @@ const OptionsItem = styled.li`
   text-align: center;
   font-weight: bold;
 `;
-
+const Checkbox = styled.div`
+  display: ${({ toggleCompare }) => (toggleCompare ? 'block' : 'none')};
+  width: 100%;
+`;
 export {
   ProductImage,
   ProductInfoWrapper,
@@ -74,4 +77,5 @@ export {
   SoldOutWrapper,
   ImageWrapper,
   InfiniteScrollStyled,
+  Checkbox,
 };

@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Header from '@components/header'
+import Header from '@components/header';
 
 const Comparison = () => {
   return (
     <>
-      <Header/>
+      <Header />
       <h1>Comparison</h1>
       <h2>
         <Link href='/'>
@@ -15,3 +15,11 @@ const Comparison = () => {
   );
 };
 export default Comparison;
+
+{
+  /* <Link
+   href="/post/[postId]/[commentId]"
+   as={`/post/${postId}/${commentId}`}>
+      <a>link to comment</a>
+</Link> */
+}

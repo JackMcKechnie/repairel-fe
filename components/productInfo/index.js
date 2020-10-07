@@ -11,7 +11,7 @@ const ProductInfo = ({ price, name, rating }) => {
     <>
       <ProductInfoList>
         <ProductInfoListItem>{name}</ProductInfoListItem>
-        <ProductInfoListItem>{`£${price}`}</ProductInfoListItem>
+        <ProductInfoListItem>{`£ ${price}`}</ProductInfoListItem>
       </ProductInfoList>
       <Rating rating={rating}>{rating}</Rating>
     </>

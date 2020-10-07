@@ -33,7 +33,7 @@ const Product = ({ product, url }) => {
               data-item-price={product.price}
               data-item-url={`https://84b827bf9943.ngrok.io${url}`}
               data-item-image={product.images[0].url}
-              data-item-custom1-name='size'
+              data-item-custom1-name='Size'
               data-item-custom1-options={product.Size}
             >
               Add to cart
