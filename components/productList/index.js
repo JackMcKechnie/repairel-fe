@@ -64,13 +64,21 @@ const ProductList = ({ list }) => {
     }
   }, [compareArray]);
 
+  const handleFilterClick = () => {
+    setToggleCompare(false);
+    setToggleFilter(!toggleFilter);
+  };
+  const handleCompareClick = () => {
+    setToggleFilter(false);
+    setToggleCompare(!toggleCompare);
+  };
   const productRender = (products) => {
     return products.map((product) => {
       if (product.stock) {
         return (
           <ProductCard key={product.id}>
             <Link href={`/product/[id]`} as={`/product/${product.id}`}>
-              <>
+              <div style={{ cursor: 'pointer', width: '100%' }}>
                 <ImageWrapper>
                   <ProductImage
                     loading='lazy'
@@ -87,7 +95,7 @@ const ProductList = ({ list }) => {
                     rating={product.rating}
                   />
                 </ProductInfoWrapper>
-              </>
+              </div>
             </Link>
             <Checkbox toggleCompare={toggleCompare}>
               <input
@@ -108,7 +116,7 @@ const ProductList = ({ list }) => {
             href={`/product/[id]`}
             as={`/product/${product.id}`}
           >
-            <ProductCard key={product.id}>
+            <ProductCard key={product.id} style={{ cursor: 'pointer' }}>
               <ImageWrapper>
                 <ProductImage
                   loading='lazy'
@@ -136,7 +144,7 @@ const ProductList = ({ list }) => {
       <section>
         <OptionsList>
           <OptionsItem
-            onClick={() => setToggleFilter(!toggleFilter)}
+            onClick={() => handleFilterClick()}
             style={
               toggleFilter
                 ? { textDecoration: 'underline', cursor: 'pointer' }
@@ -146,7 +154,7 @@ const ProductList = ({ list }) => {
             Filter
           </OptionsItem>
           <OptionsItem
-            onClick={() => setToggleCompare(!toggleCompare)}
+            onClick={() => handleCompareClick()}
             style={
               toggleCompare
                 ? { textDecoration: 'underline', cursor: 'pointer' }
