@@ -21,63 +21,6 @@ const Compare = ({ product1, product2 }) => {
   React.useEffect(() => {
     setLength(Object.keys(product1.ethics_and_sustainability).length - 1);
   }, []);
-  //   const Rating = (int) => {
-  //     for (var i = 0; i < int; i++) {
-  //       <Circle></Circle>;
-  //     }
-  //   };
-
-  //   const columns = ['1', '2'];
-  //   const imageRow = () => {
-  //     return columns.map((column, index) => {
-  //       const image = index === 0 ? product1.images[0] : product2.images[0];
-  //       return (
-  //         <Image
-  //           src={image.url}
-  //           alt={image.alternativeText}
-  //           style={{ gridColumnStart: column }}
-  //           key={image.id}
-  //         ></Image>
-  //       );
-  //     });
-  //   };
-
-  //   const rowObjGenerator = () => {
-  //     let rows = {};
-  //     let lengthArray = _.times(length, Number);
-  //     let svgArray = [Leaf, Leaf, Leaf];
-
-  //     for (var i = 0; i < lengthArray.length; i++) {
-  //       rows[lengthArray[i] + 1] = [svgArray[i]];
-  //     }
-  //     return rows;
-  //   };
-
-  // for (let entry of apiResponse) {
-  //   if (out[entry.author.login] === undefined) {
-  //     out[entry.author.login] = [entry.commit.message];
-  //   } else {
-  //     out[entry.author.login].push(entry.commit.message);
-  //   }
-
-  // generate array that is the length of ethics obj
-  // then create obj that takes the values from that array as key
-  // and svg of the same index of the array as the value of the obj
-  // map over columns array
-  // render relevant info based on row and column -> later: pass the number to lodash _.times to render X circles
-
-  //   const columns = ['1', '2', '3'];
-  //   const renderEthics = () => {
-  //     const rows = rowObjGenerator();
-  //     const columns = _.times(3 * length, String);
-  //     console.log(columns);
-  //     return columns.map((column, index) => {
-  //       let svgCount = 1;
-  //       if (!(index % 2)) {
-  //         return <img src={rows[`${svgCount}`]}></img>;
-  //       }
-  //     });
-  //   };
 
   const handleCircles = (int) => {
     let array = [];
