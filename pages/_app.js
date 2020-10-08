@@ -5,9 +5,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding: 0;
     font-family: sans-serif;
-    box-sizing: border-box;
+    
     max-width: 1300px;
 
+  }
+  * {
+    box-sizing: border-box;
   }
 `;
 
@@ -15,6 +18,9 @@ const theme = {
   colors: {
     dark: 'black',
     light: 'white',
+    good: 'hsl(2, 100%, 72%)',
+    medium: 'hsl(31, 100%, 61%)',
+    bad: 'hsl(93, 88%, 36%)',
   },
 };
 

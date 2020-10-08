@@ -1,10 +1,58 @@
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Rating } from '@components/productInfo/ProductInfo.style';
+import { Circle, CircleDiv } from '@components/compare/Compare.style';
 import Slider from './Slider';
+import Leaf from '../../public/leaf.svg';
 
-import { AddToCart, MainInfo, SoldOut } from './Product.style';
+import {
+  AddToCart,
+  MainInfo,
+  SoldOut,
+  EthicsList,
+  EthicsListItem,
+  EthicsImage,
+  EthicsCaption,
+} from './Product.style';
 
 const Product = ({ product, url }) => {
+  const icons = {
+    material: Leaf,
+    material_processing: Leaf,
+    manufacturing: Leaf,
+    assembly: Leaf,
+    use: Leaf,
+    disposal: Leaf,
+  };
+
+  const categories = Object.keys(product.ethics_and_sustainability);
+  const ethics = [];
+  for (let category of categories.slice(1)) {
+    ethics.push([
+      category,
+      product.ethics_and_sustainability[category],
+      icons[category] || Leaf,
+    ]);
+  }
+  const handleCircles = (int) => {
+    let array = [];
+    _.times(int, (i) => {
+      array.push(<Circle int={int} key={i} />);
+    });
+    return array;
+  };
+  const ethicsRender = (ethics) => {
+    return ethics.map((ethic) => {
+      return (
+        <EthicsListItem key={ethic[0]}>
+          <EthicsImage src={ethic[2]} />
+          <EthicsCaption>{ethic[0].split('_').join(' ')}</EthicsCaption>
+          <CircleDiv int={ethic[1]}>{handleCircles(ethic[1])}</CircleDiv>
+        </EthicsListItem>
+      );
+    });
+  };
+
   return (
     <>
       <Slider images={product.images} />
@@ -44,19 +92,8 @@ const Product = ({ product, url }) => {
         </div>
         <h4>Description</h4>
         <p className='product__description'>{product.description}</p>
-        <h4>Sustainability and ethics</h4>
-        <div>
-          <p>
-            Vegan: <span>{product.ethics_and_sustainability.vegan}</span>
-          </p>
-          <p>
-            Wages: <span>{product.ethics_and_sustainability.wages}</span>
-          </p>
-          <p>
-            Recyclability:{' '}
-            <span>{product.ethics_and_sustainability.recyclability}</span>
-          </p>
-        </div>
+        <h4>Ethics and Sustainability</h4>
+        <EthicsList>{ethicsRender(ethics)}</EthicsList>
       </div>
     </>
   );

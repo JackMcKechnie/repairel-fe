@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import {
   ComparisonHeader,
   ComparisonGrid,
@@ -7,9 +8,10 @@ import {
   CircleDiv,
   EthicsIcon,
   ArrowIcon,
+  ProductInfo,
 } from '@components/compare/Compare.style';
 import { Rating } from '@components/productInfo/ProductInfo.style';
-import PropTypes from 'prop-types';
+
 import Leaf from '../../public/leaf.svg';
 import Arrow from '../../public/arrow.svg';
 
@@ -19,77 +21,54 @@ const Compare = ({ product1, product2 }) => {
   React.useEffect(() => {
     setLength(Object.keys(product1.ethics_and_sustainability).length - 1);
   }, []);
-  //   const Rating = (int) => {
-  //     for (var i = 0; i < int; i++) {
-  //       <Circle></Circle>;
-  //     }
-  //   };
-
-  //   const columns = ['1', '2'];
-  //   const imageRow = () => {
-  //     return columns.map((column, index) => {
-  //       const image = index === 0 ? product1.images[0] : product2.images[0];
-  //       return (
-  //         <Image
-  //           src={image.url}
-  //           alt={image.alternativeText}
-  //           style={{ gridColumnStart: column }}
-  //           key={image.id}
-  //         ></Image>
-  //       );
-  //     });
-  //   };
-
-  //   const rowObjGenerator = () => {
-  //     let rows = {};
-  //     let lengthArray = _.times(length, Number);
-  //     let svgArray = [Leaf, Leaf, Leaf];
-
-  //     for (var i = 0; i < lengthArray.length; i++) {
-  //       rows[lengthArray[i] + 1] = [svgArray[i]];
-  //     }
-  //     return rows;
-  //   };
-
-  // for (let entry of apiResponse) {
-  //   if (out[entry.author.login] === undefined) {
-  //     out[entry.author.login] = [entry.commit.message];
-  //   } else {
-  //     out[entry.author.login].push(entry.commit.message);
-  //   }
-
-  // generate array that is the length of ethics obj
-  // then create obj that takes the values from that array as key
-  // and svg of the same index of the array as the value of the obj
-  // map over columns array
-  // render relevant info based on row and column -> later: pass the number to lodash _.times to render X circles
-
-  //   const columns = ['1', '2', '3'];
-  //   const renderEthics = () => {
-  //     const rows = rowObjGenerator();
-  //     const columns = _.times(3 * length, String);
-  //     console.log(columns);
-  //     return columns.map((column, index) => {
-  //       let svgCount = 1;
-  //       if (!(index % 2)) {
-  //         return <img src={rows[`${svgCount}`]}></img>;
-  //       }
-  //     });
-  //   };
 
   const handleCircles = (int) => {
     let array = [];
     _.times(int, (i) => {
-      array.push(<Circle key={i} />);
+      array.push(<Circle int={int} key={i} />);
     });
     return array;
   };
 
-  //   let card = [];
-  // _.times(8, (i) => {
-  //   card.push(<span className="busterCards" key={i}>♦</span>);
-  // });
-
+  const renderRow = (product1, icon, product2, arrow) => {
+    return (
+      <>
+        <CircleDiv int={product1}>{handleCircles(product1)}</CircleDiv>
+        <div>
+          <EthicsIcon src={icon} />
+          {arrow && <ArrowIcon src={Arrow} />}
+        </div>
+        <CircleDiv int={product2}>{handleCircles(product2)}</CircleDiv>
+      </>
+    );
+  };
+  const icons = {
+    material: Leaf,
+    material_processing: Leaf,
+    manufacturing: Leaf,
+    assembly: Leaf,
+    use: Leaf,
+    disposal: Leaf,
+  };
+  // list of categories
+  const categories = Object.keys(product1.ethics_and_sustainability);
+  const row = [];
+  // iterate over cathegories but leave out the first (id) and the last
+  for (let category of categories.slice(1, -1)) {
+    row.push([
+      product1.ethics_and_sustainability[category],
+      icons[category] || Leaf,
+      product2.ethics_and_sustainability[category],
+      Arrow,
+    ]);
+  }
+  // for the last category we do the same but without the arrow icon
+  const lastCategory = categories[categories.length - 1];
+  row.push([
+    product1.ethics_and_sustainability[lastCategory],
+    icons[lastCategory] || Leaf,
+    product2.ethics_and_sustainability[lastCategory],
+  ]);
   return (
     <>
       <ComparisonHeader>
@@ -101,43 +80,20 @@ const Compare = ({ product1, product2 }) => {
           src={product2.images[0].url}
           alt={product2.images[0].alternativeText}
         ></Image>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <ProductInfo>
           <p>{product1.name}</p>
           <Rating rating={product1.rating}>{product1.rating}</Rating>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        </ProductInfo>
+        <ProductInfo>
           <p>{product2.name}</p>
           <Rating rating={product2.rating}>{product2.rating}</Rating>
-        </div>
+        </ProductInfo>
       </ComparisonHeader>
       {length !== 0 && (
         <ComparisonGrid length={length}>
-          {/* {renderEthics()} */}
-          <CircleDiv style={{ display: 'flex' }}>
-            {handleCircles(product1.ethics_and_sustainability.vegan)}
-          </CircleDiv>
-          <div>
-            <EthicsIcon src={Leaf} />
-            <ArrowIcon src={Arrow} />
-          </div>
-
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.vegan)}
-          </CircleDiv>
-          <CircleDiv>
-            {handleCircles(product1.ethics_and_sustainability.wages)}
-          </CircleDiv>
-          <EthicsIcon src={Leaf} />
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.wages)}
-          </CircleDiv>
-          <CircleDiv>
-            {handleCircles(product1.ethics_and_sustainability.recyclability)}
-          </CircleDiv>
-          <EthicsIcon src={Leaf} />
-          <CircleDiv>
-            {handleCircles(product2.ethics_and_sustainability.recyclability)}
-          </CircleDiv>
+          {row.map((item) => {
+            return renderRow(...item);
+          })}
         </ComparisonGrid>
       )}
     </>
