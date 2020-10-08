@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import {
   FilterDiv,
@@ -10,6 +11,7 @@ import {
 
 const Filter = ({ list }) => {
   const [filteredList, setFilteredList] = React.useState([]);
+
   const [filters, setFilters] = React.useState({
     price: '',
     condition: '',
@@ -21,10 +23,10 @@ const Filter = ({ list }) => {
   const price = ['High to Low', 'Low to High'];
 
   React.useEffect(() => {
-    if (filteredList.length === 0) {
-      setFilteredList(list);
-    }
-  }, []);
+    // if (filteredList.length === 0) {
+    setFilteredList(list);
+    // }
+  }, [filters]);
 
   const handleChange = (event) => {
     let item = event.target.id.toLowerCase().split(' ').join('');
@@ -43,36 +45,57 @@ const Filter = ({ list }) => {
       }
     }
   };
-  // const filterPrice = (item) => {
-  //   // const priceList = filteredList.length === 0 ? fullList : filteredList;
-  //   item === 'lowtohigh'
-  //     ? filteredList.sort((a, b) => (a.price > b.price ? 1 : -1))
-  //     : filteredList.sort((a, b) => (a.price > b.price ? -1 : 1));
-  // };
 
-  // const filterCondition = (item) => {
-  //   const newList = [];
-  //   const refurbishedList = [];
-  //   filteredList.map((product) => {
-  //     product.new ? newList.push(product) : refurbishedList.push(product);
-  //   });
-  //   item === 'new'
-  //     ? setFilteredList(newList)
-  //     : setFilteredList(refurbishedList);
-  // };
-  // console.log(filteredList);
+  React.useEffect(() => {
+    if (filteredList.length === list.length) filterFunction();
+  }, [filters, filteredList]);
 
-  // const filterSize = (item) => {
-  //   const matchedSizes = [];
-  //   list.map((product) => {
-  //     if (product.Size === parseInt(item)) matchedSizes.push(product);
-  //   });
-  //   // console.log(matchedSizes);
-  // };
+  const filterFunction = () => {
+    const array = Object.keys(filters);
+    array.forEach((filter) => {
+      if (filter === 'price' && filters[filter] !== '') {
+        filters[filter] === 'lowtohigh'
+          ? setFilteredList(
+              filteredList.sort((a, b) => (a.price > b.price ? 1 : -1))
+            )
+          : setFilteredList(
+              filteredList.sort((a, b) => (a.price > b.price ? -1 : 1))
+            );
+      } else if (filter === 'condition' && filters[filter] !== '') {
+        const newList = [];
+        const refurbishedList = [];
+        filteredList.map((product) => {
+          product.new ? newList.push(product) : refurbishedList.push(product);
+        });
+        filters[filter] === 'new'
+          ? setFilteredList(newList)
+          : setFilteredList(refurbishedList);
+      } else if (filter === 'size' && filters[filter].length !== 0) {
+        let sizeList = [];
+        filteredList.map((product) => {
+          if (filters[filter].includes(product.Size.toString()))
+            sizeList.push(product);
+        });
+        setFilteredList(sizeList);
+      }
+    });
+  };
+
+  const clearAll = () => {
+    console.log('click');
+    setFilters({ price: '', condition: '', size: [] });
+    setFilteredList([]);
+  };
+
+  React.useEffect(() => {
+    console.log(filteredList);
+    console.log(filters);
+  }, [filteredList, filters]);
+
   const renderParams = (arr) => {
     return arr.map((item, index) => {
       return (
-        <>
+        <React.Fragment key={(item, index)}>
           <FilterInput
             type={typeof item === 'number' ? 'checkbox' : 'radio'}
             name={
@@ -82,30 +105,27 @@ const Filter = ({ list }) => {
                 ? 'price'
                 : 'condition'
             }
-            key={(item, index)}
             id={item}
             onChange={(event) => handleChange(event)}
           ></FilterInput>
-          <FilterLabel key={item} htmlFor={item}>
-            {item}
-          </FilterLabel>
-        </>
+          <FilterLabel htmlFor={item}>{item}</FilterLabel>
+        </React.Fragment>
       );
     });
   };
   return (
     <FilterWrapper>
-      <button>Clear all</button>
-      <div>
+      <>
         <FilterHeadings>Price</FilterHeadings>
         <FilterDiv>{renderParams(price)}</FilterDiv>
-      </div>
+      </>
       <div>
         <FilterHeadings>Condition</FilterHeadings>
         <FilterDiv>{renderParams(condition)}</FilterDiv>
       </div>
       <FilterHeadings>Size</FilterHeadings>
       <FilterDiv>{renderParams(sizes)}</FilterDiv>
+      <button onClick={() => clearAll()}>Clear all</button>
     </FilterWrapper>
   );
 };

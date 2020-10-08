@@ -21,6 +21,12 @@ const FilterDiv = styled.div`
 const FilterLabel = styled.label`
   margin-right: 1rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
+  @media (mix-width: 750px) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const FilterInput = styled.input`
@@ -34,7 +40,6 @@ const FilterInput = styled.input`
   position: absolute;
   white-space: nowrap;
   width: 1px;
-  cursor: pointer;
   &:checked + ${FilterLabel} {
     text-decoration: underline;
   }
