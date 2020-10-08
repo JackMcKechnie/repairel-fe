@@ -12,20 +12,30 @@ const FilterWrapper = styled.div`
   }
 `;
 
-const FilterList = styled.ul`
-  list-style: none;
-  padding: 0;
+const FilterDiv = styled.div`
   display: flex;
   flex-direction: row;
   margin: 0.5rem 0 0 0;
 `;
 
-const FilterListItem = styled.li`
-  margin-right: 1.5rem;
+const FilterLabel = styled.label`
+  margin-right: 1rem;
   margin-bottom: 1.5rem;
-  cursor: pointer;
+`;
 
-  &:hover {
+const FilterInput = styled.input`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  cursor: pointer;
+  &:checked + ${FilterLabel} {
     text-decoration: underline;
   }
 `;
@@ -34,4 +44,4 @@ const FilterHeadings = styled.h5`
   margin: 0;
 `;
 
-export { FilterWrapper, FilterList, FilterHeadings, FilterListItem };
+export { FilterWrapper, FilterDiv, FilterHeadings, FilterInput, FilterLabel };

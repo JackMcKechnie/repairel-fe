@@ -164,7 +164,7 @@ const ProductList = ({ list }) => {
             Compare
           </OptionsItem>
         </OptionsList>
-        {toggleFilter && <Filter />}
+        {toggleFilter && <Filter list={list} />}
         <InfiniteScrollStyled
           dataLength={products.length}
           next={() => setCount((count += 20))}
