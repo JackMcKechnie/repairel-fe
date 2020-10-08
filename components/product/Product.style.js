@@ -59,4 +59,44 @@ const SliderContainer = styled.div`
   overflow: scroll;
 `;
 
-export { AddToCart, SliderImage, SliderContainer, MainInfo, SoldOut };
+const EthicsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, max-content);
+  @media (min-width: 750px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: max-content;
+  }
+  @media (max-width: 350px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const EthicsListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.7rem;
+  border: 1px solid black;
+  margin: -0.5px;
+`;
+const EthicsImage = styled.img`
+  align-self: start;
+`;
+const EthicsCaption = styled.p`
+  text-transform: capitalize;
+`;
+export {
+  AddToCart,
+  SliderImage,
+  SliderContainer,
+  MainInfo,
+  SoldOut,
+  EthicsList,
+  EthicsListItem,
+  EthicsImage,
+  EthicsCaption,
+};

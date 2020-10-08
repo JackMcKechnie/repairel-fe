@@ -5,9 +5,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding: 0;
     font-family: sans-serif;
-    box-sizing: border-box;
+    
     max-width: 1300px;
 
+  }
+  * {
+    box-sizing: border-box;
   }
 `;
 

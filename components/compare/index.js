@@ -43,9 +43,12 @@ const Compare = ({ product1, product2 }) => {
     );
   };
   const icons = {
-    vegan: Leaf,
-    wages: Leaf,
-    recyclability: Leaf,
+    material: Leaf,
+    material_processing: Leaf,
+    manufacturing: Leaf,
+    assembly: Leaf,
+    use: Leaf,
+    disposal: Leaf,
   };
   // list of categories
   const categories = Object.keys(product1.ethics_and_sustainability);
