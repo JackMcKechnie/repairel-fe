@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import HamburgerMenu from 'react-hamburger-menu';
 
+import { StyledLink } from '../../styles/global';
+
 import Wrapper from '@components/navbar/Navbar.style';
-import Cart from '../../public/cart.svg';
+import Bag from '../../public/bag.svg';
 
 const Navbar = ({ open, setOpen }) => {
   const handleClick = () => {
@@ -12,6 +14,7 @@ const Navbar = ({ open, setOpen }) => {
 
   const navStyles = {
     zIndex: '2',
+    cursor: 'pointer',
   };
 
   return (
@@ -30,14 +33,14 @@ const Navbar = ({ open, setOpen }) => {
       </div>
       <h1>
         <Link href='/'>
-          <a>REPAIREL</a>
+          <StyledLink>REPAIREL</StyledLink>
         </Link>
       </h1>
       <a
         style={navStyles}
         className='header__summary snipcart-checkout snipcart-summary'
       >
-        <img src={Cart} style={{ display: 'block' }}></img>
+        <img src={Bag} style={{ display: 'block' }}></img>
       </a>
     </Wrapper>
   );

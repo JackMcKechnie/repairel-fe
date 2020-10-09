@@ -9,22 +9,26 @@ const ProductInfoList = styled.ul`
 const ProductInfoListItem = styled.li`
   list-style: none;
   padding: 0.1rem;
+  font-size: 1.2rem;
 `;
-
+const ProductPrice = styled.p`
+  margin: 0;
+`;
 const Rating = styled.span`
   min-height: 40px;
   min-width: 40px;
   border-radius: 50%;
-  color: ${({ rating }) =>
+  color: ${({ rating, theme }) =>
     rating < 60
-      ? 'hsl(2, 100%, 72%)'
+      ? theme.colors.bad
       : rating >= 60 && rating < 80
-      ? 'hsl(31, 100%, 61%)'
-      : 'hsl(93, 88%, 36%)'};
+      ? theme.colors.medium
+      : theme.colors.good};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 1.3rem;
 `;
 
-export { ProductInfoList, ProductInfoListItem, Rating };
+export { ProductInfoList, ProductInfoListItem, Rating, ProductPrice };

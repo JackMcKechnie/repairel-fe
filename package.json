@@ -17,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-hamburger-menu": "^1.2.1",
     "react-infinite-scroll-component": "^5.1.0",
+    "react-uid": "^2.3.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {

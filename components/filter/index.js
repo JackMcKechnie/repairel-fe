@@ -7,6 +7,7 @@ import {
   FilterHeadings,
   FilterInput,
   FilterLabel,
+  ClearAll,
 } from './Filter.style';
 
 const Filter = ({ list }) => {
@@ -82,7 +83,6 @@ const Filter = ({ list }) => {
   };
 
   const clearAll = () => {
-    console.log('click');
     setFilters({ price: '', condition: '', size: [] });
     setFilteredList([]);
   };
@@ -125,7 +125,7 @@ const Filter = ({ list }) => {
       </div>
       <FilterHeadings>Size</FilterHeadings>
       <FilterDiv>{renderParams(sizes)}</FilterDiv>
-      <button onClick={() => clearAll()}>Clear all</button>
+      <ClearAll onClick={() => clearAll()}>Clear all</ClearAll>
     </FilterWrapper>
   );
 };

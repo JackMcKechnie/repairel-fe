@@ -13,6 +13,9 @@ import {
   EthicsListItem,
   EthicsImage,
   EthicsCaption,
+  ProductTitle,
+  ProductSize,
+  ProductHeading,
 } from './Product.style';
 
 const Product = ({ product, url }) => {
@@ -64,14 +67,13 @@ const Product = ({ product, url }) => {
       >
         <MainInfo>
           <div>
-            <h2 className='product__title'>{product.name}</h2>
+            <ProductTitle className='product__title'>
+              {product.name} <ProductSize>/ size {product.Size}</ProductSize>
+            </ProductTitle>
             <p className='product__price'>£ {product.price}</p>
           </div>
           <Rating rating={product.rating}>{product.rating}</Rating>
         </MainInfo>
-        <p>
-          Size: <span>{product.Size}</span>
-        </p>
         <div className='product__price-button-container'>
           {product.stock ? (
             <AddToCart
@@ -90,9 +92,9 @@ const Product = ({ product, url }) => {
             <SoldOut>Sold Out</SoldOut>
           )}
         </div>
-        <h4>Description</h4>
+        <ProductHeading>Description</ProductHeading>
         <p className='product__description'>{product.description}</p>
-        <h4>Ethics and Sustainability</h4>
+        <ProductHeading>Ethics and Sustainability</ProductHeading>
         <EthicsList>{ethicsRender(ethics)}</EthicsList>
       </div>
     </>

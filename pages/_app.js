@@ -4,10 +4,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0 auto;
     padding: 0;
-    font-family: sans-serif;
-    
-    max-width: 1300px;
-
+    font-family: 'Work Sans', sans-serif;
+    max-width: 1500px;
+    font-weight: 300;
   }
   * {
     box-sizing: border-box;
@@ -18,9 +17,9 @@ const theme = {
   colors: {
     dark: 'black',
     light: 'white',
-    good: 'hsl(2, 100%, 72%)',
+    bad: 'hsl(2, 100%, 72%)',
     medium: 'hsl(31, 100%, 61%)',
-    bad: 'hsl(93, 88%, 36%)',
+    good: 'hsl(93, 88%, 36%)',
   },
 };
 
