@@ -4,6 +4,13 @@ import { Rating } from '@components/productInfo/ProductInfo.style';
 import { Circle, CircleDiv } from '@components/compare/Compare.style';
 import Slider from './Slider';
 import Leaf from '../../public/leaf.svg';
+import Material from '../../public/material.svg';
+import materialProcessing from '../../public/material-processing.svg';
+import Manufacturing from '../../public/manufacturing.svg';
+import Assembly from '../../public/assembly.svg';
+import Use from '../../public/use.svg';
+import Disposal from '../../public/disposal.svg';
+
 
 import {
   AddToCart,
@@ -20,12 +27,12 @@ import {
 
 const Product = ({ product, url }) => {
   const icons = {
-    material: Leaf,
-    material_processing: Leaf,
-    manufacturing: Leaf,
-    assembly: Leaf,
-    use: Leaf,
-    disposal: Leaf,
+    material: Material,
+    material_processing: materialProcessing,
+    manufacturing: Manufacturing,
+    assembly: Assembly,
+    use: Use,
+    disposal: Disposal,
   };
 
   const categories = Object.keys(product.ethics_and_sustainability);
