@@ -11,16 +11,21 @@ import {
 } from "./Filter.style";
 
 const Filter = ({ list, setFilteredList, filteredList }) => {
-
   const [filters, setFilters] = React.useState({
     price: "",
     condition: "",
     size: [],
   });
+  const [clear, setClear] = React.useState(false)
+  
 
   const sizes = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const condition = ["New", "Refurbished"];
   const price = ["High to Low", "Low to High"];
+
+  React.useEffect(() => {
+    setFilteredList(list)
+  }, [clear]);
 
   const handleChange = (event) => {
     let item = event.target.id.toLowerCase().split(" ").join("");
@@ -41,45 +46,48 @@ const Filter = ({ list, setFilteredList, filteredList }) => {
   };
 
   React.useEffect(() => {
-    filterFunction()
-  }, [filters])
+    filterFunction();
+  }, [filters]);
 
   const filterFunction = () => {
+    let priceArray = [];
+    let conditionArray = [];
+    let sizeArray = [];
     let array = Object.keys(filters);
     array.forEach((filter) => {
       if (filter === "price" && filters[filter] !== "") {
-        let highToLow = [...filteredList].sort((a, b) =>
-          a.price > b.price ? -1 : 1
-        );
-        let lowToHigh = [...filteredList].sort((a, b) =>
-          a.price > b.price ? 1 : -1
-        );
         filters[filter] === "lowtohigh"
-          ? setFilteredList(lowToHigh)
-          : setFilteredList(highToLow);
+          ? priceArray = priceArray.concat([...list].sort((a, b) =>
+              a.price > b.price ? 1 : -1))
+          : priceArray = priceArray.concat([...list].sort((a, b) =>
+              a.price > b.price ? -1 : 1))
       } else if (filter === "condition" && filters[filter] !== "") {
         const newList = [];
         const refurbishedList = [];
-        filteredList.map((product) => {
+        [...list].map((product) => {
           product.new ? newList.push(product) : refurbishedList.push(product);
         });
         filters[filter] === "new"
-          ? setFilteredList(newList)
-          : setFilteredList(refurbishedList);
+          ? conditionArray = conditionArray.concat(newList)
+          : conditionArray = conditionArray.concat(refurbishedList);
       } else if (filter === "size" && filters[filter].length !== 0) {
-        let sizeList = [];
-        filteredList.map((product) => {
+        [...list].map((product) => {
           if (filters[filter].includes(product.Size.toString()))
-            sizeList.push(product);
+            sizeArray.push(product);
         });
-        setFilteredList(sizeList);
       }
+      let mergeArray1 = priceArray.concat(conditionArray)
+      mergeArray1 = [...new Set([...priceArray, ...conditionArray])]
+      let mergeArray2 = mergeArray1.concat(sizeArray)
+      mergeArray2 = [...new Set([...mergeArray1, ...sizeArray])]
+      console.log(mergeArray2)
     });
   };
 
   const clearAll = () => {
     setFilters({ price: "", condition: "", size: [] });
     setFilteredList([]);
+    setClear(!clear)
   };
 
   const renderParams = (arr) => {

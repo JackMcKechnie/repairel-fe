@@ -30,9 +30,10 @@ const ProductList = ({ list }) => {
   const [compareArray, setCompareArray] = React.useState([]);
   const [filteredList, setFilteredList] = React.useState([]);
 
+ 
   React.useEffect(() => {
-    setFilteredList(list)
-  }, []);
+    console.log(filteredList)
+  }, [filteredList]);
 
   React.useEffect(() => {
     let productArray = [];
