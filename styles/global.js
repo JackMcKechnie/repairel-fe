@@ -27,4 +27,14 @@ const LinedHeading = styled.h1`
   }
 `;
 
-export { LinedHeading, StyledSection };
+const StyledLink = styled.a`
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.7;
+  }
+`;
+
+export { LinedHeading, StyledSection, StyledLink };

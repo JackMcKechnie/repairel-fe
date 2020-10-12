@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ComparisonHeader,
@@ -13,6 +14,12 @@ import {
 import { Rating } from '@components/productInfo/ProductInfo.style';
 
 import Leaf from '../../public/leaf.svg';
+import Material from '../../public/material.svg';
+import materialProcessing from '../../public/material-processing.svg';
+import Manufacturing from '../../public/manufacturing.svg';
+import Assembly from '../../public/assembly.svg';
+import Use from '../../public/use.svg';
+import Disposal from '../../public/disposal.svg';
 import Arrow from '../../public/arrow.svg';
 
 const Compare = ({ product1, product2 }) => {
@@ -32,23 +39,23 @@ const Compare = ({ product1, product2 }) => {
 
   const renderRow = (product1, icon, product2, arrow) => {
     return (
-      <>
+      <React.Fragment key={Math.random()}>
         <CircleDiv int={product1}>{handleCircles(product1)}</CircleDiv>
         <div>
           <EthicsIcon src={icon} />
           {arrow && <ArrowIcon src={Arrow} />}
         </div>
-        <CircleDiv int={product2}>{handleCircles(product2)}</CircleDiv>
-      </>
+        <CircleDiv int={product2} style={{display: 'flex', justifyContent: 'flex-end'}}>{handleCircles(product2)}</CircleDiv>
+      </React.Fragment>
     );
   };
   const icons = {
-    material: Leaf,
-    material_processing: Leaf,
-    manufacturing: Leaf,
-    assembly: Leaf,
-    use: Leaf,
-    disposal: Leaf,
+    material: Material,
+    material_processing: materialProcessing,
+    manufacturing: Manufacturing,
+    assembly: Assembly,
+    use: Use,
+    disposal: Disposal,
   };
   // list of categories
   const categories = Object.keys(product1.ethics_and_sustainability);
@@ -81,11 +88,15 @@ const Compare = ({ product1, product2 }) => {
           alt={product2.images[0].alternativeText}
         ></Image>
         <ProductInfo>
-          <p>{product1.name}</p>
+          <p>
+            {product1.name} / size {product1.Size}
+          </p>
           <Rating rating={product1.rating}>{product1.rating}</Rating>
         </ProductInfo>
         <ProductInfo>
-          <p>{product2.name}</p>
+          <p>
+            {product2.name} / size {product2.Size}
+          </p>
           <Rating rating={product2.rating}>{product2.rating}</Rating>
         </ProductInfo>
       </ComparisonHeader>

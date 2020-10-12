@@ -4,7 +4,12 @@ const ComparisonHeader = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: max-content 3rem;
+  grid-column-gap: 0.5rem;
   margin: 1rem;
+  @media (min-width: 750px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 const ComparisonGrid = styled.section`
@@ -13,6 +18,10 @@ const ComparisonGrid = styled.section`
   grid-template-rows: ${({ length }) => `repeat(${length}, 3rem)`};
   grid-row-gap: 2rem;
   margin: 1rem;
+  @media (min-width: 750px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 const Image = styled.img`
@@ -26,12 +35,12 @@ const Circle = styled.div`
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  background-color: ${({ int }) =>
+  background-color: ${({ int, theme }) =>
     int < 4
-      ? 'hsl(2, 100%, 72%)'
+      ? theme.colors.bad
       : int >= 2 && int <= 4
-      ? 'hsl(31, 100%, 61%)'
-      : 'hsl(93, 88%, 36%)'};
+      ? theme.colors.medium
+      : theme.colors.good};
   margin: 2px;
 `;
 

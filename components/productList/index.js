@@ -11,6 +11,8 @@ import {
   ImageWrapper,
   InfiniteScrollStyled,
   Checkbox,
+  StyledInput,
+  StyledLabel,
 } from './ProductList.style';
 
 import ProductInfo from '@components/productInfo';
@@ -93,19 +95,20 @@ const ProductList = ({ list }) => {
                     price={product.price}
                     name={product.name}
                     rating={product.rating}
+                    size={product.Size}
                   />
                 </ProductInfoWrapper>
               </div>
             </Link>
             <Checkbox toggleCompare={toggleCompare}>
-              <input
+              <StyledInput
                 // disabled={compareArray.length === 2}
                 onChange={(event) => handleChange(event)}
                 type='checkbox'
                 id={product.id}
-                name={product.id}
+                name={product.name}
               />
-              <label htmlFor={product.id}>Compare</label>
+              <StyledLabel htmlFor={product.id}>Compare</StyledLabel>
             </Checkbox>
           </ProductCard>
         );
@@ -123,7 +126,10 @@ const ProductList = ({ list }) => {
                   key={product.id}
                   src={product.images[0].url}
                 />
-                <SoldOutWrapper>Sold Out</SoldOutWrapper>
+                <SoldOutWrapper>
+                  Sold
+                  <br /> Out
+                </SoldOutWrapper>
               </ImageWrapper>
               <ProductInfoWrapper>
                 <ProductInfo
@@ -131,6 +137,7 @@ const ProductList = ({ list }) => {
                   price={product.price}
                   name={product.name}
                   rating={product.rating}
+                  size={product.Size}
                 />
               </ProductInfoWrapper>
             </ProductCard>
@@ -164,7 +171,7 @@ const ProductList = ({ list }) => {
             Compare
           </OptionsItem>
         </OptionsList>
-        {toggleFilter && <Filter />}
+        {toggleFilter && <Filter list={list} />}
         <InfiniteScrollStyled
           dataLength={products.length}
           next={() => setCount((count += 20))}

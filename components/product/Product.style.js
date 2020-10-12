@@ -7,14 +7,21 @@ const MainInfo = styled.div`
   border-bottom: 1px solid black;
   margin-bottom: 1rem;
 `;
-
+const ProductTitle = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 300;
+`;
+const ProductSize = styled.span`
+  font-weight: 200;
+  font-size: 1rem;
+`;
 const AddToCart = styled.button`
   width: 4rem;
   max-width: 100%;
   display: inline-block;
   background: white;
   color: black;
-  border: 3px solid black;
+  border: 1px solid black;
   height: auto;
   width: auto;
   padding: 0.6em 3em;
@@ -25,6 +32,8 @@ const AddToCart = styled.button`
   border-radius: 0;
   cursor: pointer;
   transition: color 150ms, background-color 150ms;
+  text-transform: uppercase;
+  font-size: 0.8rem;
   &:hover {
     color: white;
     background-color: black;
@@ -37,7 +46,7 @@ const SoldOut = styled.button`
   display: inline-block;
   background: white;
   color: lightgrey;
-  border: 3px solid lightgrey;
+  border: 1px solid lightgrey;
   height: auto;
   width: auto;
   padding: 0.6em 3em;
@@ -46,6 +55,8 @@ const SoldOut = styled.button`
   letter-spacing: 1px;
   vertical-align: top;
   border-radius: 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 `;
 
 const SliderImage = styled.img`
@@ -89,6 +100,11 @@ const EthicsImage = styled.img`
 const EthicsCaption = styled.p`
   text-transform: capitalize;
 `;
+const ProductHeading = styled.h3`
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 3rem;
+`;
 export {
   AddToCart,
   SliderImage,
@@ -99,4 +115,7 @@ export {
   EthicsListItem,
   EthicsImage,
   EthicsCaption,
+  ProductTitle,
+  ProductSize,
+  ProductHeading,
 };
