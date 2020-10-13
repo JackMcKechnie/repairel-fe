@@ -1,8 +1,9 @@
-import Header from '@components/header';
-import PropTypes from 'prop-types';
+import Head from "next/head";
+import Header from "@components/header";
+import PropTypes from "prop-types";
 
-import Product from '@components/product';
-import { useRouter } from 'next/router';
+import Product from "@components/product";
+import { useRouter } from "next/router";
 
 const ProductPage = ({ product }) => {
   var router = useRouter();
@@ -10,6 +11,9 @@ const ProductPage = ({ product }) => {
 
   return (
     <>
+      <Head>
+        <title id="title">REPAIREL | {product.name}</title>
+      </Head>
       <Header />
       <Product product={product} url={url} />
     </>
