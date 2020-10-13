@@ -38,7 +38,7 @@ const ProductList = ({ list }) => {
           setHasMore(false);
         } else {
           productArray.push(list[i]);
-          setProducts(productArray);
+          setProducts(products.concat(productArray));
         }
       }
     } else {
