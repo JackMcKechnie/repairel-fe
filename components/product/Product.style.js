@@ -87,7 +87,7 @@ const Wishlist = styled.button`
 `;
 
 const ButtonContainer = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -137,6 +137,7 @@ const EthicsCaption = styled.p`
 const ProductHeading = styled.h3`
   font-size: 1.05rem;
   font-weight: 500;
+  margin-top: 2.5rem;
 `;
 
 export {
