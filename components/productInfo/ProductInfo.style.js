@@ -17,6 +17,7 @@ const ProductPrice = styled.p`
 const Rating = styled.span`
   min-height: 40px;
   min-width: 40px;
+  cursor: default;
   border-radius: 50%;
   color: ${({ rating, theme }) =>
     rating < 60
