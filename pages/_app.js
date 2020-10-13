@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -15,11 +15,11 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    dark: 'black',
-    light: 'white',
-    bad: 'hsl(2, 100%, 72%)',
-    medium: 'hsl(31, 100%, 61%)',
-    good: 'hsl(93, 88%, 36%)',
+    dark: "black",
+    light: "white",
+    bad: "hsl(2, 100%, 72%)",
+    medium: "hsl(31, 100%, 61%)",
+    good: "hsl(93, 88%, 36%)",
   },
 };
 

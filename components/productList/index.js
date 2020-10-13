@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import {
   ProductCard,
   ProductImage,
@@ -13,10 +13,11 @@ import {
   Checkbox,
   StyledInput,
   StyledLabel,
-} from './ProductList.style';
+} from "./ProductList.style";
 
-import ProductInfo from '@components/productInfo';
-import Filter from '@components/filter';
+import ProductInfo from "@components/productInfo";
+import Filter from "@components/filter";
+import CompareInstructions from "@components/compareInstructions"
 
 const ProductList = ({ list }) => {
   const router = useRouter();
@@ -27,18 +28,30 @@ const ProductList = ({ list }) => {
   const [toggleFilter, setToggleFilter] = React.useState(false);
   const [toggleCompare, setToggleCompare] = React.useState(false);
   const [compareArray, setCompareArray] = React.useState([]);
+  const [filteredList, setFilteredList] = React.useState([]);
 
   React.useEffect(() => {
     let productArray = [];
-    for (var i = count; i < count + 20; i++) {
-      if (i >= list.length) {
-        setHasMore(false);
-      } else {
-        productArray.push(list[i]);
-        setProducts(products.concat(productArray));
+    if (filteredList.length === 0) {
+      for (var i = count; i < count + 20; i++) {
+        if (i >= list.length) {
+          setHasMore(false);
+        } else {
+          productArray.push(list[i]);
+          setProducts(productArray);
+        }
+      }
+    } else {
+      for (var j = count; j < count + 20; j++) {
+        if (j >= filteredList.length) {
+          setHasMore(false);
+        } else {
+          productArray.push(filteredList[j]);
+          setProducts(productArray);
+        }
       }
     }
-  }, [count]);
+  }, [count, filteredList]);
 
   const handleChange = (event) => {
     let id = event.target.id;
@@ -59,7 +72,7 @@ const ProductList = ({ list }) => {
 
   React.useEffect(() => {
     if (compareArray.length === 2) {
-      const href = '/compare/[id1]/[id2]';
+      const href = "/compare/[id1]/[id2]";
       const as = `/compare/${compareArray[0]}/${compareArray[1]}`;
 
       router.push(href, as);
@@ -80,10 +93,10 @@ const ProductList = ({ list }) => {
         return (
           <ProductCard key={product.id}>
             <Link href={`/product/[id]`} as={`/product/${product.id}`}>
-              <div style={{ cursor: 'pointer', width: '100%' }}>
+              <div style={{ cursor: "pointer", width: "100%" }}>
                 <ImageWrapper>
                   <ProductImage
-                    loading='lazy'
+                    loading="lazy"
                     key={product.id}
                     stock={product.stock}
                     src={product.images[0].url}
@@ -104,7 +117,7 @@ const ProductList = ({ list }) => {
               <StyledInput
                 // disabled={compareArray.length === 2}
                 onChange={(event) => handleChange(event)}
-                type='checkbox'
+                type="checkbox"
                 id={product.id}
                 name={product.name}
               />
@@ -119,10 +132,10 @@ const ProductList = ({ list }) => {
             href={`/product/[id]`}
             as={`/product/${product.id}`}
           >
-            <ProductCard key={product.id} style={{ cursor: 'pointer' }}>
+            <ProductCard key={product.id} style={{ cursor: "pointer" }}>
               <ImageWrapper>
                 <ProductImage
-                  loading='lazy'
+                  loading="lazy"
                   key={product.id}
                   src={product.images[0].url}
                 />
@@ -154,8 +167,8 @@ const ProductList = ({ list }) => {
             onClick={() => handleFilterClick()}
             style={
               toggleFilter
-                ? { textDecoration: 'underline', cursor: 'pointer' }
-                : { textDecoration: 'none', cursor: 'pointer' }
+                ? { textDecoration: "underline", cursor: "pointer" }
+                : { textDecoration: "none", cursor: "pointer" }
             }
           >
             Filter
@@ -164,20 +177,29 @@ const ProductList = ({ list }) => {
             onClick={() => handleCompareClick()}
             style={
               toggleCompare
-                ? { textDecoration: 'underline', cursor: 'pointer' }
-                : { textDecoration: 'none', cursor: 'pointer' }
+                ? { textDecoration: "underline", cursor: "pointer" }
+                : { textDecoration: "none", cursor: "pointer" }
             }
           >
             Compare
           </OptionsItem>
         </OptionsList>
-        {toggleFilter && <Filter list={list} />}
+        {toggleFilter && (
+          <Filter
+            filteredList={filteredList}
+            setFilteredList={setFilteredList}
+            list={list}
+          />
+        )}
+        {toggleCompare && (
+          <CompareInstructions/>
+        )}
         <InfiniteScrollStyled
           dataLength={products.length}
           next={() => setCount((count += 20))}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
-          scrollableTarget='scrollableDiv'
+          scrollableTarget="scrollableDiv"
         >
           {productRender(products)}
         </InfiniteScrollStyled>
