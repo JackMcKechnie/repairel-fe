@@ -1,10 +1,14 @@
-import Header from '@components/header';
-import Compare from '@components/compare';
-import PropTypes from 'prop-types';
+import Head from "next/head";
+import Header from "@components/header";
+import Compare from "@components/compare";
+import PropTypes from "prop-types";
 
 const Comparison = ({ products }) => {
   return (
     <>
+      <Head>
+        <title id="title">REPAIREL | Compare</title>
+      </Head>
       <Header />
       <Compare product1={products[0]} product2={products[1]} />
     </>

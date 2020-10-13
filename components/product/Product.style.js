@@ -103,7 +103,6 @@ const EthicsCaption = styled.p`
 const ProductHeading = styled.h3`
   font-size: 1rem;
   font-weight: 500;
-  /* margin-top: 2rem; */
 `;
 
 export {
