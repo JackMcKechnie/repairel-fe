@@ -51,6 +51,11 @@ const FilterHeadings = styled.h5`
   font-weight: 500;
 `;
 
+const FilterMessage = styled.p`
+  margin-top: 0;
+  text-align: center;
+`
+
 const ClearAll = styled.button`
   margin-bottom: 1rem;
   width: 4rem;
@@ -81,5 +86,6 @@ export {
   FilterHeadings,
   FilterInput,
   FilterLabel,
+  FilterMessage,
   ClearAll,
 };
