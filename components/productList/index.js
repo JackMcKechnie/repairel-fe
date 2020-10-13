@@ -30,11 +30,6 @@ const ProductList = ({ list }) => {
   const [compareArray, setCompareArray] = React.useState([]);
   const [filteredList, setFilteredList] = React.useState([]);
 
- 
-  React.useEffect(() => {
-    console.log(filteredList)
-  }, [filteredList]);
-
   React.useEffect(() => {
     let productArray = [];
     if (filteredList.length === 0) {
@@ -47,7 +42,6 @@ const ProductList = ({ list }) => {
         }
       }
     } else {
-      // setProducts([])
       for (var j = count; j < count + 20; j++) {
         if (j >= filteredList.length) {
           setHasMore(false);
