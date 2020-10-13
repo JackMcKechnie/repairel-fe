@@ -7,6 +7,9 @@ const InfiniteScrollStyled = styled(InfiniteScroll)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
   grid-gap: 1rem;
+  @media (min-width: 750px) {
+    grid-template-columns: repeat(3, minmax(375px, 1fr))
+  }
 `;
 const ProductImage = styled.img`
   width: 100%;

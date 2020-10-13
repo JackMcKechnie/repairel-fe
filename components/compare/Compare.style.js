@@ -20,7 +20,7 @@ const ComparisonGrid = styled.section`
   margin: 1rem;
   @media (min-width: 750px) {
     width: 80%;
-    margin: auto;
+    margin: 1rem auto;
   }
 `;
 
@@ -28,8 +28,12 @@ const Image = styled.img`
   width: 100%;
   height: auto;
   align-self: center;
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
-const Ethics = styled.div``;
 
 const Circle = styled.div`
   height: 15px;
@@ -66,7 +70,6 @@ const ArrowIcon = styled.img`
 export {
   ComparisonHeader,
   Image,
-  Ethics,
   Circle,
   ComparisonGrid,
   CircleDiv,
