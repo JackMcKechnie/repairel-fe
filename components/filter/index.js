@@ -47,7 +47,6 @@ const Filter = ({ list, setFilteredList }) => {
   };
 
   React.useEffect(() => {
-    console.log(filters);
     filterFunction();
   }, [filters]);
 
