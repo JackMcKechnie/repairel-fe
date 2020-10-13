@@ -23,6 +23,8 @@ import {
   ProductTitle,
   ProductSize,
   ProductHeading,
+  Wishlist,
+  ButtonContainer
 } from './Product.style';
 
 const Product = ({ product, url }) => {
@@ -81,7 +83,7 @@ const Product = ({ product, url }) => {
           </div>
           <Rating rating={product.rating}>{product.rating}</Rating>
         </MainInfo>
-        <div className='product__price-button-container' style={{marginBottom: '3rem'}}>
+        <ButtonContainer className='product__price-button-container'>
           {product.stock ? (
             <AddToCart
               className='snipcart-add-item product__button'
@@ -98,7 +100,10 @@ const Product = ({ product, url }) => {
           ) : (
             <SoldOut>Sold Out</SoldOut>
           )}
-        </div>
+          <a href={`mailto:repairelhub@gmail.com?subject=Wishlist&body=I would like to add ${product.name} to my wishlist`}>
+          <Wishlist>Add to wishlist</Wishlist>
+          </a>
+        </ButtonContainer>
         <ProductHeading>Description</ProductHeading>
         <p className='product__description'>{product.description}</p>
         <ProductHeading>Ethics and Sustainability</ProductHeading>

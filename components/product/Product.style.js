@@ -24,6 +24,7 @@ const AddToCart = styled.button`
   border: 1px solid black;
   height: auto;
   width: auto;
+  margin: 0.5rem;
   padding: 0.6em 3em;
   font-size: inherit;
   line-height: inherit;
@@ -58,6 +59,39 @@ const SoldOut = styled.button`
   text-transform: uppercase;
   font-size: 0.8rem;
 `;
+
+const Wishlist = styled.button`
+  width: 4rem;
+  max-width: 100%;
+  display: inline-block;
+  background: white;
+  color: black;
+  border: 1px solid black;
+  height: auto;
+  width: auto;
+  margin: 0.5rem;
+  padding: 0.6em 3em;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: 1px;
+  vertical-align: top;
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 150ms, background-color 150ms;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 
 const SliderImage = styled.img`
   max-width: 400px;
@@ -101,7 +135,7 @@ const EthicsCaption = styled.p`
   text-transform: capitalize;
 `;
 const ProductHeading = styled.h3`
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 500;
 `;
 
@@ -118,4 +152,6 @@ export {
   ProductTitle,
   ProductSize,
   ProductHeading,
+  Wishlist,
+  ButtonContainer
 };
