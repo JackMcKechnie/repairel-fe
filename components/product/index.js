@@ -81,7 +81,7 @@ const Product = ({ product, url }) => {
           </div>
           <Rating rating={product.rating}>{product.rating}</Rating>
         </MainInfo>
-        <div className='product__price-button-container'>
+        <div className='product__price-button-container' style={{marginBottom: '3rem'}}>
           {product.stock ? (
             <AddToCart
               className='snipcart-add-item product__button'

@@ -115,7 +115,6 @@ const ProductList = ({ list }) => {
             </Link>
             <Checkbox toggleCompare={toggleCompare}>
               <StyledInput
-                // disabled={compareArray.length === 2}
                 onChange={(event) => handleChange(event)}
                 type="checkbox"
                 id={product.id}

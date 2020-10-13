@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding: 0;
     font-family: 'Work Sans', sans-serif;
-    max-width: 1500px;
+    max-width: 1250px;
     font-weight: 300;
   }
   * {

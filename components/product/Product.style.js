@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const MainInfo = styled.div`
   display: flex;
@@ -103,8 +103,9 @@ const EthicsCaption = styled.p`
 const ProductHeading = styled.h3`
   font-size: 1rem;
   font-weight: 500;
-  margin-top: 3rem;
+  /* margin-top: 2rem; */
 `;
+
 export {
   AddToCart,
   SliderImage,

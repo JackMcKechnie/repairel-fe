@@ -7,6 +7,7 @@ import {
   FilterHeadings,
   FilterInput,
   FilterLabel,
+  FilterMessage,
   ClearAll,
 } from "./Filter.style";
 
@@ -16,6 +17,7 @@ const Filter = ({ list, setFilteredList }) => {
     condition: "",
     size: [],
   });
+  const [noFilter, setNoFilter] = React.useState(false);
 
   const sizes = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const condition = ["New", "Refurbished"];
@@ -32,18 +34,18 @@ const Filter = ({ list, setFilteredList }) => {
     } else if (item.includes("new") || item.includes("refurbished")) {
       setFilters({ ...filters, condition: item });
     } else {
-        setFilters({ ...filters, size: filters.size.concat(item) });
+      setFilters({ ...filters, size: filters.size.concat(item) });
     }
   };
 
   const handleUncheck = (event) => {
     let id = event.target.id;
-    const sizes = [...filters.size]
+    const sizes = [...filters.size];
     const index = sizes.indexOf(id);
     if (index > -1) {
       sizes.splice(index, 1);
     }
-    setFilters({ ...filters, size: sizes })
+    setFilters({ ...filters, size: sizes });
   };
 
   React.useEffect(() => {
@@ -75,13 +77,25 @@ const Filter = ({ list, setFilteredList }) => {
         });
         listCopy = sizeArray;
       }
-      setFilteredList(listCopy);
+      if (listCopy.length === 0) {
+        setNoFilter(true);
+      }
+      if (
+        !(
+          filters.price === "" &&
+          filters.condition === "" &&
+          filters.size.length === 0
+        )
+      ) {
+        setFilteredList(listCopy);
+      }
     });
   };
 
   const clearAll = () => {
     setFilters({ price: "", condition: "", size: [] });
     setFilteredList([]);
+    setNoFilter(false);
     let checkboxes = document.querySelectorAll("input");
     Array.from(checkboxes, (checkbox) => {
       checkbox.checked = false;
@@ -121,6 +135,11 @@ const Filter = ({ list, setFilteredList }) => {
       </div>
       <FilterHeadings>Size</FilterHeadings>
       <FilterDiv>{renderParams(sizes)}</FilterDiv>
+      {noFilter && (
+        <FilterMessage>
+          {"We're sorry, there are no products that match these filters"}
+        </FilterMessage>
+      )}
       <ClearAll onClick={() => clearAll()}>Clear all</ClearAll>
     </FilterWrapper>
   );

@@ -1,6 +1,7 @@
-import _ from 'lodash';
-import React from 'react';
-import PropTypes from 'prop-types';
+import _ from "lodash";
+import Link from "next/link";
+import React from "react";
+import PropTypes from "prop-types";
 import {
   ComparisonHeader,
   ComparisonGrid,
@@ -10,17 +11,17 @@ import {
   EthicsIcon,
   ArrowIcon,
   ProductInfo,
-} from '@components/compare/Compare.style';
-import { Rating } from '@components/productInfo/ProductInfo.style';
+} from "@components/compare/Compare.style";
+import { Rating } from "@components/productInfo/ProductInfo.style";
 
-import Leaf from '../../public/leaf.svg';
-import Material from '../../public/material.svg';
-import materialProcessing from '../../public/material-processing.svg';
-import Manufacturing from '../../public/manufacturing.svg';
-import Assembly from '../../public/assembly.svg';
-import Use from '../../public/use.svg';
-import Disposal from '../../public/disposal.svg';
-import Arrow from '../../public/arrow.svg';
+import Leaf from "../../public/leaf.svg";
+import Material from "../../public/material.svg";
+import materialProcessing from "../../public/material-processing.svg";
+import Manufacturing from "../../public/manufacturing.svg";
+import Assembly from "../../public/assembly.svg";
+import Use from "../../public/use.svg";
+import Disposal from "../../public/disposal.svg";
+import Arrow from "../../public/arrow.svg";
 
 const Compare = ({ product1, product2 }) => {
   const [length, setLength] = React.useState(0);
@@ -45,7 +46,12 @@ const Compare = ({ product1, product2 }) => {
           <EthicsIcon src={icon} />
           {arrow && <ArrowIcon src={Arrow} />}
         </div>
-        <CircleDiv int={product2} style={{display: 'flex', justifyContent: 'flex-end'}}>{handleCircles(product2)}</CircleDiv>
+        <CircleDiv
+          int={product2}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          {handleCircles(product2)}
+        </CircleDiv>
       </React.Fragment>
     );
   };
@@ -79,14 +85,18 @@ const Compare = ({ product1, product2 }) => {
   return (
     <>
       <ComparisonHeader>
-        <Image
-          src={product1.images[0].url}
-          alt={product1.images[0].alternativeText}
-        ></Image>
-        <Image
-          src={product2.images[0].url}
-          alt={product2.images[0].alternativeText}
-        ></Image>
+        <Link href={`/product/[id]`} as={`/product/${product1.id}`}>
+          <Image
+            src={product1.images[0].url}
+            alt={product1.images[0].alternativeText}
+          ></Image>
+        </Link>
+        <Link href={`/product/[id]`} as={`/product/${product2.id}`}>
+          <Image
+            src={product2.images[0].url}
+            alt={product2.images[0].alternativeText}
+          ></Image>
+        </Link>
         <ProductInfo>
           <p>
             {product1.name} / size {product1.Size}
