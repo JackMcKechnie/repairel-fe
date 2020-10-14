@@ -49,37 +49,40 @@ const Filter = ({ list, setFilteredList }) => {
   };
 
   React.useEffect(() => {
+    sessionStorage.setItem("filters", JSON.stringify(filters));
     filterFunction();
   }, [filters]);
 
   const filterFunction = () => {
     let listCopy = [...list];
-    let array = Object.keys(filters);
+    let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
+    let array = Object.keys(storageFilters);
+    console.log(array);
     array.forEach((filter) => {
-      if (filter === "price" && filters[filter] !== "") {
-        filters[filter] === "lowtohigh"
+      if (filter === "price" && storageFilters[filter] !== "") {
+        storageFilters[filter] === "lowtohigh"
           ? (listCopy = [...list].sort((a, b) => (a.price > b.price ? 1 : -1)))
           : (listCopy = [...list].sort((a, b) => (a.price > b.price ? -1 : 1)));
-      } else if (filter === "condition" && filters[filter] !== "") {
+      } else if (filter === "condition" && storageFilters[filter] !== "") {
         const newList = [];
         const refurbishedList = [];
         listCopy.map((product) => {
           product.new ? newList.push(product) : refurbishedList.push(product);
         });
-        filters[filter] === "new"
+        storageFilters[filter] === "new"
           ? (listCopy = newList)
           : (listCopy = refurbishedList);
-      } else if (filter === "size" && filters[filter].length !== 0) {
+      } else if (filter === "size" && storageFilters[filter].length !== 0) {
         let sizeArray = [];
         listCopy.map((product) => {
-          if (filters[filter].includes(product.Size.toString()))
+          if (storageFilters[filter].includes(product.Size.toString()))
             sizeArray.push(product);
         });
         listCopy = sizeArray;
       }
-      if (listCopy.length === 0) {
-        setNoFilter(true);
-      }
+      listCopy.length === 0 ?
+        setNoFilter(true) : setNoFilter(false);
+      
       if (
         !(
           filters.price === "" &&
@@ -147,7 +150,6 @@ const Filter = ({ list, setFilteredList }) => {
 
 Filter.propTypes = {
   list: PropTypes.array,
-  filteredList: PropTypes.array,
   setFilteredList: PropTypes.func,
 };
 
