@@ -23,18 +23,27 @@ const Filter = ({ list, setFilteredList }) => {
   const condition = ["New", "Refurbished"];
   const price = ["High to Low", "Low to High"];
 
-  // React.useEffect(() => {
-  //   let checkboxes = document.querySelectorAll("input");
-  //   let storedFilters = Object.values(JSON.parse(sessionStorage.getItem('filters')));
-  //   let price = storedFilters[0];
-  //   let condition= storedFilters[1];
-  //   let sizes = storedFilters[2];
-  //   Array.from(checkboxes, (checkbox) => {
-  //     if (checkbox.id.split(" ").join('').toLowerCase() === price){
-  //       console.log(checkbox)
-  //     }
-  //   })
-  // }, [filters])
+  React.useEffect(() => {
+    let checkboxes = document.querySelectorAll("input");
+    if (sessionStorage.getItem("filters") !== null) {
+      let storedFilters = Object.values(
+        JSON.parse(sessionStorage.getItem("filters"))
+      );
+      let price = storedFilters[0];
+      let condition = storedFilters[1];
+      let sizes = storedFilters[2];
+      Array.from(checkboxes, (checkbox) => {
+        let id = checkbox.id.split(" ").join('').toLowerCase()
+        if ((id) === price){
+          checkbox.checked = true;
+        } else if ((id) === condition) {
+          checkbox.checked = true;
+        } else if (sizes.includes(id)){
+          checkbox.checked = true;
+        }
+      });
+    }
+  }, []);
 
   const handleChange = (event) => {
     event.target.checked ? handleCheck(event) : handleUncheck(event);
@@ -43,10 +52,22 @@ const Filter = ({ list, setFilteredList }) => {
   const handleCheck = (event) => {
     let item = event.target.id.toLowerCase().split(" ").join("");
     if (item.includes("high")) {
+      sessionStorage.setItem(
+        "filters",
+        JSON.stringify({ ...filters, price: item })
+      );
       setFilters({ ...filters, price: item });
     } else if (item.includes("new") || item.includes("refurbished")) {
+      sessionStorage.setItem(
+        "filters",
+        JSON.stringify({ ...filters, condition: item })
+      );
       setFilters({ ...filters, condition: item });
     } else {
+      sessionStorage.setItem(
+        "filters",
+        JSON.stringify({ ...filters, size: filters.size.concat(item) })
+      );
       setFilters({ ...filters, size: filters.size.concat(item) });
     }
   };
@@ -58,52 +79,55 @@ const Filter = ({ list, setFilteredList }) => {
     if (index > -1) {
       sizes.splice(index, 1);
     }
+    sessionStorage.setItem(
+      "filters",
+      JSON.stringify({ ...filters, size: sizes })
+    );
     setFilters({ ...filters, size: sizes });
   };
 
   React.useEffect(() => {
-    sessionStorage.setItem("filters", JSON.stringify(filters));
     filterFunction();
   }, [filters]);
 
   const filterFunction = () => {
     let listCopy = [...list];
-    // let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
-    let array = Object.keys(filters);
+    let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
+    let filterObj = storageFilters === null ? filters : storageFilters
+    let array = Object.keys(filterObj);
     array.forEach((filter) => {
-      if (filter === "price" && filters[filter] !== "") {
-        filters[filter] === "lowtohigh"
+      if (filter === "price" && filterObj[filter] !== "") {
+        filterObj[filter] === "lowtohigh"
           ? (listCopy = [...list].sort((a, b) => (a.price > b.price ? 1 : -1)))
           : (listCopy = [...list].sort((a, b) => (a.price > b.price ? -1 : 1)));
-      } else if (filter === "condition" && filters[filter] !== "") {
+      } else if (filter === "condition" && filterObj[filter] !== "") {
         const newList = [];
         const refurbishedList = [];
         listCopy.map((product) => {
           product.new ? newList.push(product) : refurbishedList.push(product);
         });
-        filters[filter] === "new"
+        filterObj[filter] === "new"
           ? (listCopy = newList)
           : (listCopy = refurbishedList);
-      } else if (filter === "size" && filters[filter].length !== 0) {
+      } else if (filter === "size" && filterObj[filter].length !== 0) {
         let sizeArray = [];
         listCopy.map((product) => {
-          if (filters[filter].includes(product.Size.toString()))
+          if (filterObj[filter].includes(product.Size.toString()))
             sizeArray.push(product);
         });
         listCopy = sizeArray;
       }
-      listCopy.length === 0 ?
-        setNoFilter(true) : setNoFilter(false);
-      
-      if (
-        !(
-          filters.price === "" &&
-          filters.condition === "" &&
-          filters.size.length === 0
-        )
-      ) {
+      listCopy.length === 0 ? setNoFilter(true) : setNoFilter(false);
+
+      // if (
+      //   !(
+      //     filterObj.price === "" &&
+      //     filterObj.condition === "" &&
+      //     filterObj.size.length === 0
+      //   )
+      // ) {
         setFilteredList(listCopy);
-      }
+      // }
     });
   };
 
@@ -111,6 +135,7 @@ const Filter = ({ list, setFilteredList }) => {
     setFilters({ price: "", condition: "", size: [] });
     setFilteredList([]);
     setNoFilter(false);
+    sessionStorage.removeItem("filters");
     let checkboxes = document.querySelectorAll("input");
     Array.from(checkboxes, (checkbox) => {
       checkbox.checked = false;

@@ -31,6 +31,11 @@ const ProductList = ({ list }) => {
   const [filteredList, setFilteredList] = React.useState([]);
 
   React.useEffect(() => {
+    const filters = sessionStorage.getItem('filters')
+    if (filters !== null) setToggleFilter(true)
+  }, [])
+
+  React.useEffect(() => {
     let productArray = [];
     if (filteredList.length === 0) {
       for (var i = count; i < count + 50; i++) {
@@ -54,7 +59,7 @@ const ProductList = ({ list }) => {
   }, [count, filteredList]);
 
   const handleChange = (event) => {
-    let id = event.target.id;
+    let id = event.target.id - 100;
     let checked = event.target.checked;
     if (checked === false) {
       const index = compareArray.indexOf(id);
@@ -117,10 +122,10 @@ const ProductList = ({ list }) => {
               <StyledInput
                 onChange={(event) => handleChange(event)}
                 type="checkbox"
-                id={product.id}
+                id={product.id + 100}
                 name={product.name}
               />
-              <StyledLabel htmlFor={product.id}>Compare</StyledLabel>
+              <StyledLabel htmlFor={product.name}>Compare</StyledLabel>
             </Checkbox>
           </ProductCard>
         );
