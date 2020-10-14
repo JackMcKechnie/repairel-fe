@@ -33,16 +33,16 @@ const ProductList = ({ list }) => {
   React.useEffect(() => {
     let productArray = [];
     if (filteredList.length === 0) {
-      for (var i = count; i < count + 20; i++) {
+      for (var i = count; i < count + 50; i++) {
         if (i >= list.length) {
           setHasMore(false);
         } else {
           productArray.push(list[i]);
-          setProducts(products.concat(productArray));
+          setProducts(productArray);
         }
       }
     } else {
-      for (var j = count; j < count + 20; j++) {
+      for (var j = count; j < count + 50; j++) {
         if (j >= filteredList.length) {
           setHasMore(false);
         } else {
@@ -184,8 +184,7 @@ const ProductList = ({ list }) => {
           </OptionsItem>
         </OptionsList>
         {toggleFilter && (
-          <Filter
-            filteredList={filteredList}
+          <Filter 
             setFilteredList={setFilteredList}
             list={list}
           />
@@ -195,7 +194,7 @@ const ProductList = ({ list }) => {
         )}
         <InfiniteScrollStyled
           dataLength={products.length}
-          next={() => setCount((count += 20))}
+          next={() => setCount((count += 50))}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollableDiv"
