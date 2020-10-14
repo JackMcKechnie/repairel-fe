@@ -23,6 +23,19 @@ const Filter = ({ list, setFilteredList }) => {
   const condition = ["New", "Refurbished"];
   const price = ["High to Low", "Low to High"];
 
+  // React.useEffect(() => {
+  //   let checkboxes = document.querySelectorAll("input");
+  //   let storedFilters = Object.values(JSON.parse(sessionStorage.getItem('filters')));
+  //   let price = storedFilters[0];
+  //   let condition= storedFilters[1];
+  //   let sizes = storedFilters[2];
+  //   Array.from(checkboxes, (checkbox) => {
+  //     if (checkbox.id.split(" ").join('').toLowerCase() === price){
+  //       console.log(checkbox)
+  //     }
+  //   })
+  // }, [filters])
+
   const handleChange = (event) => {
     event.target.checked ? handleCheck(event) : handleUncheck(event);
   };
@@ -55,27 +68,26 @@ const Filter = ({ list, setFilteredList }) => {
 
   const filterFunction = () => {
     let listCopy = [...list];
-    let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
-    let array = Object.keys(storageFilters);
-    console.log(array);
+    // let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
+    let array = Object.keys(filters);
     array.forEach((filter) => {
-      if (filter === "price" && storageFilters[filter] !== "") {
-        storageFilters[filter] === "lowtohigh"
+      if (filter === "price" && filters[filter] !== "") {
+        filters[filter] === "lowtohigh"
           ? (listCopy = [...list].sort((a, b) => (a.price > b.price ? 1 : -1)))
           : (listCopy = [...list].sort((a, b) => (a.price > b.price ? -1 : 1)));
-      } else if (filter === "condition" && storageFilters[filter] !== "") {
+      } else if (filter === "condition" && filters[filter] !== "") {
         const newList = [];
         const refurbishedList = [];
         listCopy.map((product) => {
           product.new ? newList.push(product) : refurbishedList.push(product);
         });
-        storageFilters[filter] === "new"
+        filters[filter] === "new"
           ? (listCopy = newList)
           : (listCopy = refurbishedList);
-      } else if (filter === "size" && storageFilters[filter].length !== 0) {
+      } else if (filter === "size" && filters[filter].length !== 0) {
         let sizeArray = [];
         listCopy.map((product) => {
-          if (storageFilters[filter].includes(product.Size.toString()))
+          if (filters[filter].includes(product.Size.toString()))
             sizeArray.push(product);
         });
         listCopy = sizeArray;

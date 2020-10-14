@@ -39,11 +39,13 @@ const Compare = ({ product1, product2 }) => {
   };
 
   const renderRow = (product1, icon, product2, arrow) => {
+    let iconKey = Object.keys(icons).find(key => icons[key] === icon);
+    let iconName = iconKey.charAt(0).toUpperCase() + iconKey.slice(1).split('_').join(' ')
     return (
       <React.Fragment key={Math.random()}>
         <CircleDiv int={product1}>{handleCircles(product1)}</CircleDiv>
         <div>
-          <EthicsIcon src={icon} />
+          <EthicsIcon title={iconName} src={icon} />
           {arrow && <ArrowIcon src={Arrow} />}
         </div>
         <CircleDiv
@@ -101,13 +103,13 @@ const Compare = ({ product1, product2 }) => {
           <p>
             {product1.name} / size {product1.Size}
           </p>
-          <Rating rating={product1.rating}>{product1.rating}</Rating>
+          <Rating rating={product1.rating} title="Overall ethics rating">{product1.rating}</Rating>
         </ProductInfo>
         <ProductInfo>
           <p>
             {product2.name} / size {product2.Size}
           </p>
-          <Rating rating={product2.rating}>{product2.rating}</Rating>
+          <Rating rating={product2.rating} title="Overall ethics rating">{product2.rating}</Rating>
         </ProductInfo>
       </ComparisonHeader>
       {length !== 0 && (

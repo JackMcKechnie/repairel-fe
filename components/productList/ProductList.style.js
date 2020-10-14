@@ -5,10 +5,10 @@ const InfiniteScrollStyled = styled(InfiniteScroll)`
   margin: 2rem 1rem 1rem 1rem;
   width: calc(100% - 2rem);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
   @media (min-width: 750px) {
-    grid-template-columns: repeat(3, minmax(375px, 1fr))
+    grid-template-columns: repeat(3, minmax(300px, 1fr))
   }
 `;
 const ProductImage = styled.img`
@@ -22,6 +22,7 @@ const ImageWrapper = styled.div`
   width: 100%;
   height: auto;
   overflow: hidden;
+  display: block;
 `;
 
 const ProductCard = styled.div`
