@@ -24,7 +24,7 @@ Project duration: 21st September to 15th October 2020.
 
 - Design week: ideation to prototyping.
 - Two 6-day build sprints:
-  - first focused on building the database and skeleton of the platform.
+  - First focused on building the database and skeleton of the platform.
   - Second focused on the intricate functionalities - filter and compare - and overall styling.
 
 ## Design process
@@ -54,7 +54,6 @@ Project duration: 21st September to 15th October 2020.
 
 - Recongifuration of the filter and how it relates to the infinite scroll as this is currently dysfunctional.
 - The wishlist feature could be more automated - post to database as opposed to an email.
-- Stock control in general needs to be implemented - given sufficient funds a switch to shopify could be good.
 
 ## Developers
 
@@ -66,4 +65,4 @@ Any issues or bugs, please contact the developers.
 
 ---
 
-Hosted on GitHub, deployed to Netlify and Electron.
+Hosted on GitHub, deployed to Vercel.
