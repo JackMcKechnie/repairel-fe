@@ -23,6 +23,7 @@ const Filter = ({ list, setFilteredList }) => {
   const condition = ["New", "Refurbished"];
   const price = ["High to Low", "Low to High"];
 
+  // if there is sessionStorage with filters the correct checkboxes are checked upon filter open
   React.useEffect(() => {
     let checkboxes = document.querySelectorAll("input");
     if (sessionStorage.getItem("filters") !== null) {
@@ -33,18 +34,19 @@ const Filter = ({ list, setFilteredList }) => {
       let condition = storedFilters[1];
       let sizes = storedFilters[2];
       Array.from(checkboxes, (checkbox) => {
-        let id = checkbox.id.split(" ").join('').toLowerCase()
-        if ((id) === price){
+        let id = checkbox.id.split(" ").join("").toLowerCase();
+        if (id === price) {
           checkbox.checked = true;
-        } else if ((id) === condition) {
+        } else if (id === condition) {
           checkbox.checked = true;
-        } else if (sizes.includes(id)){
+        } else if (sizes.includes(id)) {
           checkbox.checked = true;
         }
       });
     }
   }, []);
 
+  //checkes whether input change is checking or unchecking and updates filters state accordingly
   const handleChange = (event) => {
     event.target.checked ? handleCheck(event) : handleUncheck(event);
   };
@@ -86,14 +88,16 @@ const Filter = ({ list, setFilteredList }) => {
     setFilters({ ...filters, size: sizes });
   };
 
+  // when filters update i.e. filter inputs are clicked the filter function is triggered to render filtered products
   React.useEffect(() => {
     filterFunction();
   }, [filters]);
 
+  // filters products and sets filteredList to trigger else statement in productList component line 58
   const filterFunction = () => {
     let listCopy = [...list];
-    let storageFilters = JSON.parse(sessionStorage.getItem('filters'));
-    let filterObj = storageFilters === null ? filters : storageFilters
+    let storageFilters = JSON.parse(sessionStorage.getItem("filters"));
+    let filterObj = storageFilters === null ? filters : storageFilters;
     let array = Object.keys(filterObj);
     array.forEach((filter) => {
       if (filter === "price" && filterObj[filter] !== "") {
@@ -119,18 +123,11 @@ const Filter = ({ list, setFilteredList }) => {
       }
       listCopy.length === 0 ? setNoFilter(true) : setNoFilter(false);
 
-      // if (
-      //   !(
-      //     filterObj.price === "" &&
-      //     filterObj.condition === "" &&
-      //     filterObj.size.length === 0
-      //   )
-      // ) {
-        setFilteredList(listCopy);
-      // }
+      setFilteredList(listCopy);
     });
   };
 
+  // resets all state and unchecks checkboxes
   const clearAll = () => {
     setFilters({ price: "", condition: "", size: [] });
     setFilteredList([]);
