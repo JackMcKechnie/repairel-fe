@@ -7,8 +7,8 @@ See it [live](https://repairel-fe.vercel.app/).
 
 ## Installation
 
-- Navigate to [repo](https://github.com/repairel/repairel-fe)
-- Clone it with `git clone https://github.com/repairel/repairel-fe.git` and `cd` into the project folder
+- Navigate to [repo](https://github.com/Repairel/repairel-fe)
+- Clone it with `git clone https://github.com/Repairel/repairel-fe.git` and `cd` into the project folder
 - `npm i` to install all dependencies
 - use `npm run dev` to start the server in the browser.
 
