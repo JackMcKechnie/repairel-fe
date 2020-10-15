@@ -17,9 +17,11 @@ import {
 
 import ProductInfo from "@components/productInfo";
 import Filter from "@components/filter";
-import CompareInstructions from "@components/compareInstructions"
+import CompareInstructions from "@components/compareInstructions";
 
 const ProductList = ({ list }) => {
+  // the list comes from the fetch request in '../../pages/index' 
+  //and contains all of the products
   const router = useRouter();
 
   const [products, setProducts] = React.useState([]);
@@ -30,11 +32,18 @@ const ProductList = ({ list }) => {
   const [compareArray, setCompareArray] = React.useState([]);
   const [filteredList, setFilteredList] = React.useState([]);
 
+  //this useEffect checks session storage for filters and opens the filter if there is
   React.useEffect(() => {
-    const filters = sessionStorage.getItem('filters')
-    if (filters !== null) setToggleFilter(true)
-  }, [])
+    const filters = sessionStorage.getItem("filters");
+    if (filters !== null) setToggleFilter(true);
+  }, []);
 
+  // This useEffect checks to see wether to render from list or filteredList
+
+  // Products state was required for the infinte scroll but when it is filteredList it does not work
+
+  // The count state is used to dictate when more products should be added from list and
+  // rendered for the infinte scroll
   React.useEffect(() => {
     let productArray = [];
     if (filteredList.length === 0) {
@@ -92,6 +101,8 @@ const ProductList = ({ list }) => {
     setToggleFilter(false);
     setToggleCompare(!toggleCompare);
   };
+
+  // renders a different product card depending on stock status
   const productRender = (products) => {
     return products.map((product) => {
       if (product.stock) {
@@ -163,6 +174,8 @@ const ProductList = ({ list }) => {
       }
     });
   };
+
+  // Filter component contains more logic necessary for understanding this page
   return (
     products.length !== 0 && (
       <section>
@@ -189,14 +202,9 @@ const ProductList = ({ list }) => {
           </OptionsItem>
         </OptionsList>
         {toggleFilter && (
-          <Filter 
-            setFilteredList={setFilteredList}
-            list={list}
-          />
+          <Filter setFilteredList={setFilteredList} list={list} />
         )}
-        {toggleCompare && (
-          <CompareInstructions/>
-        )}
+        {toggleCompare && <CompareInstructions />}
         <InfiniteScrollStyled
           dataLength={products.length}
           next={() => setCount((count += 50))}
